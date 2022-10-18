@@ -1,0 +1,20 @@
+.hero {
+  width: 686px;
+  height: 373px;
+  background: #609eaf;
+  border-radius: 40px;
+  margin-right: 22px;
+  position: relative;
+  
+  &-img,&-svg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    svg {
+        border-radius: 40px;
+    }
+  }
+  &-left {
+    grid-gap: 75px;
+  }
+}
