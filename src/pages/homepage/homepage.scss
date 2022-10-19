@@ -1,5 +1,10 @@
+.outlet {
+    gap: 43px;
+}
+
 .hero {
-  width: 686px;
+  // max-width: 743px;
+  width: calc(0.54 * 100vw);
   height: 373px;
   background: #609eaf;
   border-radius: 40px;
