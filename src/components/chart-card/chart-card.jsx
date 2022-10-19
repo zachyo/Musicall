@@ -1,14 +1,13 @@
-import card1 from '../../assets/images/Lead-image.png'
 import heart from '../../assets/icons/Heart.svg'
 import './chart-card.scss';
 
 const ChartCard = ({card}) => {
-  const {title, artiste, time} = card
+  const {title, artiste, time, img} = card
   return (
     <div className="chart-card ">
       <div className="flex items-center">
         <div className="img">
-          <img src={card1} alt="cardImage" />
+          <img src={img} alt="cardImage" />
         </div>
         <div className="info">
           <h2 className="text-lg">{title}</h2>
