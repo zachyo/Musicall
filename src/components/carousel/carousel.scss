@@ -1,0 +1,28 @@
+.carousel {
+  gap: 30px;
+  overflow-x: scroll;
+  margin: 13px 0;
+  margin-bottom: 30px;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+  flex-wrap: nowrap;
+}
+
+.releaseCard {
+  // display: flex;
+  // flex-direction: column;
+  h2 {
+    width: 140px;
+  }
+  // width: 100%;
+  img {
+    margin-bottom: 10px;
+    border-radius: 20px;
+    width: 140px;
+    height: 140px;
+  }
+}
