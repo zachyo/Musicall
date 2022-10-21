@@ -8,6 +8,7 @@ module.exports = {
         darkAlt: "#1A1E1F",
         lightWhite: "#333738",
         home: "#609EAF",
+        dark2: "#1D2123",
       },
     },
   },
