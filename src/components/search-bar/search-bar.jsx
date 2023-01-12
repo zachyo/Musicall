@@ -1,26 +1,26 @@
 import { useContext } from "react";
 import { useState } from "react";
 import search from "../../assets/icons/search.svg";
-import { SearchContext } from "../../contexts/searchContext";
+import SearchContext  from "../../contexts/searchContext";
 
 const SearchBar = () => {
-  const {searchKeyy, setSearchKeyy} = useContext(SearchContext);
-  const [searchKey, setSearchKey] = useState(undefined);
+  const { setSearch } = useContext(SearchContext);
+  // const [searchKey, setSearchKey] = useState(undefined);
 
   //searching system
   const handleChange = (event) => {
-    setSearchKey(event.target.value);
-    setSearchKeyy(event.target.value);
+    console.log(setSearch)
+    // setSearch(event.target.value);
   };
 
-  console.log(searchKey,searchKeyy)
+  // console.log(searchKey, searchVal);
   return (
     <div className="search-bar flex px-6 my-4 space-x-5">
       <img src={search} alt="" />
       <input
         type="text"
         placeholder="Search artists..."
-        value={searchKey}
+        // value={searchKey}
         onChange={handleChange}
         className="bg-dark2 w-full text-light p-2"
       />
