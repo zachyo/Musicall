@@ -12,56 +12,67 @@ const CARDS_DATA = [
     id: 1,
     title: "Life in a circle",
     img: R14,
+    type: "single",
   },
   {
     id: 2,
     title: "Mountain",
     img: R15,
+    type: "single",
   },
   {
     id: 3,
     title: "Limits",
     img: R16,
+    type: "album",
   },
   {
     id: 4,
     title: "Everything's Black",
     img: R17,
+    type: "single",
   },
   {
     id: 5,
     title: "Blind Eyes",
     img: R18,
+    type: "album",
   },
   {
     id: 6,
     title: "Cancelled",
     img: R19,
+    type: "single",
   },
   {
     id: 7,
     title: "Named",
     img: R20,
+    type: "album",
   },
   {
     id: 8,
     title: "Seasons In",
     img: R21,
+    type: "single",
   },
   {
     id: 9,
     title: "Limits",
     img: R16,
+    type: "album",
   },
   {
     id: 10,
     title: "Life in a circle",
     img: R14,
+    type: "single",
   },
   {
     id: 11,
     title: "Mountain",
     img: R15,
+    type: "album",
   },
 ];
 
