@@ -12,7 +12,7 @@ const SearchBar = () => {
         type="text"
         placeholder="Search artists..."
         onChange={handleChange}
-        className="bg-dark2 w-full text-light p-2"
+        className=" w-full text-light p-2 bg-transparent border-none focus:border-none focus:border-b"
       />
     </div>
   );
