@@ -9,6 +9,7 @@ module.exports = {
         lightWhite: "#333738",
         home: "#609EAF",
         dark2: "#1D2123",
+        lighttblue : "#A4C7C6"
       },
     },
   },
