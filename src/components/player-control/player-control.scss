@@ -1,0 +1,33 @@
+.buttons {
+  img {
+    transform: scale(0.8);
+  }
+  & img:hover {
+    cursor: pointer;
+    //use filter: ; to color svgs
+    color: #facd66;
+  }
+  .line {
+    padding: 0 283px;
+    font-size: 2px;
+    background-color: #fff;
+    // margin-left: -49px;
+    // margin: 0 auto;
+  }
+}
+.song-details {
+    width: 13%;
+}
+
+.volume {
+  & .circle {
+    padding: 7px;
+    border-radius: 100%;
+    background-color: #fff;
+  }
+  .line {
+    padding: 0 55px;
+    font-size: 2px;
+    background-color: #fff;
+  }
+}
