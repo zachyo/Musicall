@@ -27,7 +27,7 @@ const Overview = ({chartB}) => {
             <div className="overview-container">
               <SearchBar />
 
-              <div className="overview-replaceable">
+              <div className="overview-replaceable" style={{marginTop : '40px'}}>
                 <Outlet />
               </div>
             </div>
