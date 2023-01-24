@@ -19,7 +19,7 @@ const ChartAlbum = () => {
   });
   return (
     <div
-      className="w-full"
+      className="chart-album w-full"
       // style={{ backgroundImage: `url(${leadImage})` }}
     >
       <div className="album-header flex items-end">
