@@ -7,10 +7,10 @@ import SearchContext from "../../contexts/searchContext";
 import { searchFilter } from "../../utilities/searchFilter";
 import NowPlayingContext from "../../contexts/nowPlayingContext";
 
-const Carousel = () => {
+const Carousel = ({songData}) => {
   const {searchKey} = useContext(SearchContext)
   const {handleClick} = useContext(NowPlayingContext)
-  let newData = CARDS_DATA
+  let newData = CARDS_DATA;
   if (searchKey) {
     newData = searchFilter(searchKey, CARDS_DATA);
     console.log(searchKey, newData);
