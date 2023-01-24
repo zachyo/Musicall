@@ -6,6 +6,7 @@ import topC3 from "../../assets/images/Lead-image.png";
 import topC1 from '../../assets/images/topC2.png'
 import topC2 from "../../assets/images/topC3.png";
 import Carousel from "../../components/carousel/carousel";
+import useFetch from "../../utilities/useFetch";
 
 const Homepage = () => {
   const cardsList = [
@@ -34,6 +35,8 @@ const Homepage = () => {
     return <ChartCard key={card.key} card={card} />;
   });
 
+  const { loading, error, data } = useFetch("https://musica-api.up.railway.app/new");
+console.log(error)
   return (
     <div className="outlet flex flex-col justify-center">
       <div className="text-left flex justify-center">
@@ -82,7 +85,7 @@ const Homepage = () => {
           New Releases.
         </h1>
         <>
-          <Carousel />
+          <Carousel songData={data} />
           <Carousel />
         </>
       </div>
