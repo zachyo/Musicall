@@ -10,7 +10,7 @@ const Collections = () => {
   ).map((song) => {
     return (
       <div className="badge" style={{ backgroundImage: `url(${song.img})` }}>
-        <h1>{song.title}</h1>
+        <h1 style={{fontSize: '21px'}}>{song.title}</h1>
         <p>John Watts</p>
       </div>
     );
