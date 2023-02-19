@@ -1,7 +1,6 @@
 import { createContext, useState } from "react";
 import R14 from "../assets/images/Rectangle14.png";
 
-
 const NowPlayingContext = createContext();
 
 export const NowPlayingContextProvider = ({ children }) => {
