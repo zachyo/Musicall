@@ -51,7 +51,7 @@ function useFetch(url) {
         })
         .then((data) => {
           cache.current[url] = data;
-          // console.log(cache.current);
+          console.log(cache.current[url]);
           if (cancelRequest.current) return;
 
           dispatch({ type: "fetched", payload: data });
