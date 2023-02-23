@@ -6,14 +6,20 @@ import heroImg from "../../assets/images/heroImg.png";
 import Carousel from "../../components/carousel/carousel";
 import useFetch from "../../utilities/useFetch";
 import cardsListData from "../../utilities/cardsData";
+import { tracksData } from "../../utilities/tracksData";
 
 const Homepage = () => {
   const cardsList = cardsListData.map((card) => {
     return <ChartCard key={card.key} card={card} />;
   });
-
+// www.totaltypescript.com
+// www.typescriptlang.org
+// checkout js docs
   const { loading, error, data } = useFetch(
-    "https://musica-api.up.railway.app/new"
+    // "https://musica-api.up.railway.app/new"
+    // 'https://shazam.p.rapidapi.com/charts/track'
+    "https://cors-anywhere.herokuapp.com/https://api.deezer.com/chart/tracks"
+    // "https://shazam-core.p.rapidapi.com/v1/search/multi?query=metallica&search_type=SONGS"
   );
   console.log(data, error);
   return (
@@ -50,7 +56,7 @@ const Homepage = () => {
               />
             </svg>
           </div>
-          <div className="hero-img">
+          <div className="hero-img animate-slideright">
             <img src={heroImg} alt="heroImage" />
           </div>
         </div>
@@ -64,7 +70,7 @@ const Homepage = () => {
           New Releases.
         </h1>
         <>
-          <Carousel songData={data} />
+          <Carousel songData={tracksData.tracks.data} />
           <Carousel />
         </>
       </div>
