@@ -1,5 +1,8 @@
 import { useEffect, useReducer, useRef } from "react";
+// //** 
+// @param {string} url - fetch link
 
+// */
 function useFetch(url) {
   const cache = useRef({});
 
@@ -42,10 +45,19 @@ function useFetch(url) {
         dispatch({ type: "fetched", payload: cache.current[url] });
         return;
       }
+      const options = {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          'Access-Control-Allow-Origin': '*',
+          mode : 'no-cors'
+        }
+      };
 
-      await fetch(url)
+      await fetch(url, options)
         .then((res) => {
           if (!res.ok) {
+            console.log(res)
             throw new Error(res.statusText);
           } else return res.json();
         })
