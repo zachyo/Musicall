@@ -4,7 +4,7 @@ import './chart-card.scss';
 const ChartCard = ({card}) => {
   const {title, artiste, time, img} = card
   return (
-    <div className="chart-card ">
+    <div className="chart-card animate-slideright">
       <div className="flex items-center">
         <div className="img">
           <img src={img} alt="cardImage" />
