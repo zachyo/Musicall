@@ -7,6 +7,8 @@ module.exports = {
         light: "#EFEEE0",
         darkAlt: "#1A1E1F",
         lightWhite: "#333738",
+        lightSteel : '#a4c7c6',
+        sandy : '#facd66',
         home: "#609EAF",
         dark2: "#1D2123",
         lighttblue: "#A4C7C6",
