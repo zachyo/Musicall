@@ -9,9 +9,23 @@ import cardsListData from "../../utilities/cardsData";
 import { tracksData } from "../../utilities/tracksData";
 
 const Homepage = () => {
-  const cardsList = cardsListData.map((card) => {
-    return <ChartCard key={card.key} card={card} />;
-  });
+
+  const CardList = () => {
+    let randArr = []
+    let list = tracksData.albums.data
+    let newList = []
+    while (randArr.length < 3) {
+      let randNum = Math.floor(Math.random() * list.length)
+      if (!randArr.includes(randNum)) {
+        randArr.push(randNum)
+        newList.push(list[randNum])
+      }
+    }
+    console.log(newList)
+    return newList.map(card => {
+      return <ChartCard key={card.id} card={card} />
+    })
+  }
 // www.totaltypescript.com
 // www.typescriptlang.org
 // checkout js docs
@@ -62,7 +76,7 @@ const Homepage = () => {
         </div>
         <div className="">
           <h1 className="font-bold text-2xl text-light mb-3">Top Charts</h1>
-          <div className="cards">{cardsList}</div>
+          <div className="cards"><CardList/></div>
         </div>
       </div>
       <div className="" style={{ width: "calc(0.868 * 100vw)" }}>
