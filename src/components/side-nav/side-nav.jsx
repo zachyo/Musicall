@@ -30,7 +30,7 @@ const SideNav = () => {
           <CustomIcon iconn={video} to={"collections"} />
         </div>
         <div className="side-nav_down flex flex-col items-center justify-center bg-black rounded-full py-5 px-1">
-          <CustomIcon iconn={profile} />
+          <CustomIcon iconn={profile} to={'/signup'} />
           <CustomIcon iconn={logout} />
         </div>
       </div>
