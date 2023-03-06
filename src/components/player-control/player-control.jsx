@@ -50,7 +50,7 @@ const PlayerControl = ({ tracks }) => {
         </div>
       </div>
       <div className="buttons flex flex-col items-center justify-center space-y-5">
-        <div className="flex w-96 items-center justify-center">
+        <div className="flex w-96 items-center justify-between">
           <img
             src={shuffleIcon}
             alt="shuffle"
