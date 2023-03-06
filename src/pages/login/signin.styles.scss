@@ -1,0 +1,99 @@
+// @import '../sass/base.scss';
+.signin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: calc(86.8vw);
+  height: 88vh;
+
+  
+  & .form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+
+    // @include respond(tab-port) {
+    //   width: 85%;
+    // }
+
+    button {
+      padding: .8rem;
+      width: 788px;
+      cursor: pointer;
+      background-color: #a4c7c6;
+      color: black;
+      font-weight: 700;
+      border: none;
+      border-radius: 0.5rem;
+      font-size: 1.6rem;
+      &:hover {
+        box-shadow: 0 0.5rem 2rem rgba(#4d5be6, 0.4);
+      }
+    }
+  }
+  .TandT {
+    input {
+      transform: scale(1.9);
+      margin:1rem 1rem 1rem 0.5rem;
+    }
+  }
+  .group {
+    // @include respond(tab-port) {
+    //   width: 97%;
+    // }
+  }
+  a {
+    font-weight: 700;
+    color: #a4c7c6;
+  }
+  .resetPassword {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -1rem;
+  }
+
+  .otherSignIn {
+    .line {
+     position: relative;
+     margin: 5rem 0;
+     hr {
+       position: absolute;
+       top: .8rem;
+       left: -17rem;
+       width: 18rem;
+     } 
+     & :last-child {
+       right: -54rem;
+     }
+    //  @include respond(tab-port) {
+    //   hr {
+    //     width: 25rem;
+    //     left: -29rem;
+    //     & :last-child {
+    //       // right: 20rem;
+    //       // width: 2rem;
+    //     }
+    //   }
+    // }
+    }
+    .social {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .app {
+        margin: 0 2rem;
+        img {
+          outline: 1px solid rgb(207, 207, 207);
+          outline-offset: 1rem;
+          border-radius: 2px;
+        }
+
+        a {
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
