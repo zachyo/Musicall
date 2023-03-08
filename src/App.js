@@ -7,8 +7,8 @@ import ChartAlbum from './pages/chart-album/chart-album';
 
 import leadImage from './assets/images/Lead-image.png'
 import Collections from './pages/collections/collections';
-import SignUp from './pages/login/logup.component';
 import LoggedIn from './pages/login/loggedIn';
+import Select from './pages/login/select';
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
             <Route path=":id" element={<Collections />} />
           </Route>
           <Route path="collections" element={<Collections />} />
-          <Route path="signup" element={<SignUp />} />
+          <Route path="signin" element={<Select/>} />
           <Route path="loggedin" element={<LoggedIn/>} />
         </Route>
       </Routes>
