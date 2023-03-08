@@ -17,6 +17,7 @@ const SideNav = () => {
           </Link>
         );
     }
+    
   return (
     <div className="side-nav w-1/12  flex flex-col items-center mr-2 mt-5">
       <Link to="/" className="side-nav_logo  mb-10">
@@ -30,7 +31,7 @@ const SideNav = () => {
           <CustomIcon iconn={video} to={"collections"} />
         </div>
         <div className="side-nav_down flex flex-col items-center justify-center bg-black rounded-full py-5 px-1">
-          <CustomIcon iconn={profile} to={'/signup'} />
+          <CustomIcon iconn={profile} to={'/signin'} />
           <CustomIcon iconn={logout} />
         </div>
       </div>
