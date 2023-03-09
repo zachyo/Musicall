@@ -7,6 +7,7 @@ import { ControlsContextProvider } from "../../contexts/controlsContext";
 import { NowPlayingContextProvider } from "../../contexts/nowPlayingContext";
 import { SearchProvider } from "../../contexts/searchContext";
 import { TimeVolumeProvider } from "../../contexts/time-volume.context";
+import { UserProvider } from "../../contexts/userContext";
 import { tracksData } from "../../utilities/tracksData";
 
 import "./overview.scss";
@@ -18,34 +19,36 @@ const Overview = ({ chartB }) => {
   // console.log(val)
 
   return (
-    <ControlsContextProvider>
-      <NowPlayingContextProvider>
-        <TimeVolumeProvider>
-          <SearchProvider>
-            <div
-              className="overview"
-              // style={{ backgroundImage: `url(${chartB})` }}
-            >
-              <div className="flex">
-                <SideNav />
+    <UserProvider>
+      <ControlsContextProvider>
+        <NowPlayingContextProvider>
+          <TimeVolumeProvider>
+            <SearchProvider>
+              <div
+                className="overview"
+                // style={{ backgroundImage: `url(${chartB})` }}
+              >
+                <div className="flex">
+                  <SideNav />
 
-                <div className="overview-container">
-                  <SearchBar />
+                  <div className="overview-container">
+                    <SearchBar />
 
-                  <div
-                    className="overview-replaceable"
-                    style={{ marginTop: "40px" }}
-                  >
-                    <Outlet />
+                    <div
+                      className="overview-replaceable"
+                      style={{ marginTop: "40px" }}
+                    >
+                      <Outlet />
+                    </div>
                   </div>
                 </div>
+                <PlayerControl tracks={tracksData.tracks.data} />
               </div>
-              <PlayerControl tracks={tracksData.tracks.data} />
-            </div>
-          </SearchProvider>
-        </TimeVolumeProvider>
-      </NowPlayingContextProvider>
-    </ControlsContextProvider>
+            </SearchProvider>
+          </TimeVolumeProvider>
+        </NowPlayingContextProvider>
+      </ControlsContextProvider>
+    </UserProvider>
   );
 };
 
