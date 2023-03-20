@@ -19,7 +19,7 @@ const SideNav = () => {
     }
     
   return (
-    <div className="side-nav w-1/12  flex flex-col items-center mr-2 mt-5">
+    <div className="side-nav w-1/12 hidden md:flex flex-col items-center mr-2 mt-5 ">
       <Link to="/" className="side-nav_logo  mb-10">
         <img src={logo} alt="" />
       </Link>
