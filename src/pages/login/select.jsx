@@ -8,11 +8,11 @@ const Select = () => {
     option === "login" ? setOption("signup") : setOption("login");
   };
   return (
-    <div className="select" style={{ height: "120vh" }}>
+    <div className="select mt-8 md:mt-4 h-[130vh] md:h-[110vh]">
       {option === "signup" && (
         <>
           <SignUp />
-          <p className="mt-12 text-sandy text-xl">
+          <p className="mx-4 mt-12 text-sandy text-xl">
             Do you have an account already? Login{" "}
             <button
               onClick={handleButton}
@@ -26,7 +26,7 @@ const Select = () => {
       {option === "login" && (
         <>
           <SignIn />
-          <p className="mt-12 text-sandy text-xl">
+          <p className="mx-4 mt-12 text-sandy text-xl">
             Don't have an account yet? Signup{" "}
             <button
               onClick={handleButton}
