@@ -93,11 +93,11 @@ const SignIn = () => {
   };
 
   return (
-    <div className="signin">
-      <div className="signup">
+    <div className="signin md:w-[88vw]">
+      <div className="signup mx-4 md:m-0">
         <h1 className="mb-12 text-4xl font-bold text-lightSteel">Login</h1>
         <form className="form" onSubmit={handleSubmit}>
-          <div className="inputs flex justify-center flex-wrap w-[51rem]">
+          <div className="inputs flex flex-col justify-center flex-wrap md:gap-8 md:flex-row">
             <FormInput
               type="email"
               name="email"
@@ -122,7 +122,7 @@ const SignIn = () => {
           {/* <p className="valid">Password must be 8 characters long</p> */}
           <div className="TandT flex items-center mb-1">
             <input type="checkbox" name="acceptance" required />
-            <p className="text-lightSteel">
+            <p className="text-lightSteel text-[14px] md:text-[16px]">
               {" "}
               I Accept The{" "}
               <Link to="/" className="underline">
@@ -131,7 +131,12 @@ const SignIn = () => {
             </p>
           </div>
 
-          <button type="submit" disabled={isSending} onClick={handleSubmit}>
+          <button
+            type="submit"
+            disabled={isSending}
+            onClick={handleSubmit}
+            className="md:text-2xl"
+          >
             {isSending === true ? <Spinner /> : "Create Account"}
           </button>
         </form>
