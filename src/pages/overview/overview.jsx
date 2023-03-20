@@ -28,16 +28,14 @@ const Overview = ({ chartB }) => {
                 className="overview"
                 // style={{ backgroundImage: `url(${chartB})` }}
               >
-                <div className="flex">
+                <div className="flex justify-around">
                   <SideNav />
 
                   <div className="overview-container">
                     <SearchBar />
 
-                    <div
-                      className="overview-replaceable"
-                      style={{ marginTop: "40px" }}
-                    >
+                    <div className="overview-replaceable mt-0
+                     md:mt-[40px]">
                       <Outlet />
                     </div>
                   </div>
