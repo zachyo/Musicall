@@ -1,9 +1,9 @@
 import './form-input.styles.scss'
 const FormInput = ({label, HandleChange,placeholder,value,name, ...otherInputProps}) => {
     return (
-      <div className="group">
+      <div className="group md:w-[25.5rem]">
         <input
-          className="form-input"
+          className="form-input w-full my-3 p-3 md:p-[1rem] md:my-[1.2rem]"
           onChange={HandleChange}
           {...otherInputProps}
           placeholder= {placeholder}
