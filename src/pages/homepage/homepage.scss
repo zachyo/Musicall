@@ -4,12 +4,10 @@
 }
 
 .hero {
-  // max-width: 743px;
-  width: calc(0.54 * 100vw);
   height: 373px;
   background: #609eaf;
   border-radius: 40px;
-  margin-right: 22px;
+  // margin-right: 22px;
   position: relative;
   
   &-img,&-svg {
@@ -20,7 +18,9 @@
         border-radius: 40px;
     }
   }
-  &-left {
-    grid-gap: 75px;
+}
+.cards {
+  &::-webkit-scrollbar {
+    display: none;
   }
 }
