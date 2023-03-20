@@ -38,11 +38,11 @@ const Homepage = () => {
   console.log(data, error);
   return (
     <div className="outlet flex flex-col justify-center">
-      <div className="text-left flex justify-center">
-        <div className="hero bg-home">
-          <div className="hero-left my-10 mx-11 text-white font-normal text-sm flex flex-col justify-between">
+      <div className="text-left flex flex-col justify-center m-4 md:m-0 gap-8 md:flex-row ">
+        <div className="container md:w-[54vw] hero bg-home">
+          <div className="hero-left my-10 mx-5 text-white font-normal text-sm flex flex-col justify-between md:my-10 md:mx-11 md:gap-[75px]">
             <p className="text-xs">Currated playlist</p>
-            <div className="">
+            <div className="mt-32 md:m-0">
               <h1 className="font-bold text text-4xl mb-2">R & B Hits</h1>
               <p>
                 All mine, Lie again, Petty call me everyday,
@@ -51,10 +51,10 @@ const Homepage = () => {
               </p>
             </div>
 
-            <p>33k Likes</p>
+            <p className="mt-8 md:m-0">33k Likes</p>
           </div>
 
-          <div className="hero-svg">
+          <div className="hero-svg hidden">
             <svg
               width="500"
               height="373"
@@ -70,16 +70,18 @@ const Homepage = () => {
               />
             </svg>
           </div>
-          <div className="hero-img animate-slideright">
+          <div className="hero-img animate-slideright hidden">
             <img src={heroImg} alt="heroImage" />
           </div>
         </div>
-        <div className="">
+        <div className="w-[89vw] md:w-auto">
           <h1 className="font-bold text-2xl text-light mb-3">Top Charts</h1>
-          <div className="cards"><CardList/></div>
+          <div className="cards flex gap-4 overflow-x-scroll scroll-smooth flex-nowrap md:block">
+            <CardList />
+          </div>
         </div>
       </div>
-      <div className="" style={{ width: "calc(0.868 * 100vw)" }}>
+      <div className="w-[88vw] mx-4 md:m-0">
         <h1 className="font-bold text-2xl text-light text-left">
           New Releases.
         </h1>
