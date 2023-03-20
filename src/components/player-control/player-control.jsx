@@ -35,26 +35,26 @@ const PlayerControl = ({ tracks }) => {
     setAppTime,
   } = useContext(TimeVolumeContext);
   return (
-    <div className="player-control flex h-24 bg-black fixed bottom-0 z-10 w-full text-white p-10 items-center justify-around">
+    <div className="player-control flex h-24 bg-black fixed bottom-0 z-10 w-full text-white px-4 items-center justify-between md:justify-around md:p-10">
       <div className="song-details flex items-center">
         <img
           src={nowPlaying?.album.cover}
           alt=""
-          className="h-12 mr-4 rounded-xl"
+          className="h-12 mr-2 md:mr-4 rounded-xl"
         />
         <div className="text-left text-lightSteel font-bold">
-          <h1>{nowPlaying?.title}</h1>
+          <h1 className="w-48">{nowPlaying?.title}</h1>
           <small className="text-sandy truncate font-normal">
             {nowPlaying?.artist.name}
           </small>
         </div>
       </div>
       <div className="buttons flex flex-col items-center justify-center space-y-5">
-        <div className="flex w-96 items-center justify-between">
+        <div className="flex w-20 md:w-96 items-center justify-between">
           <img
             src={shuffleIcon}
             alt="shuffle"
-            className="h-8"
+            className="h-8 hidden md:block"
             onClick={handleShuffle}
             style={
               shuffle
@@ -68,7 +68,7 @@ const PlayerControl = ({ tracks }) => {
           <img
             src={previous}
             alt="previous"
-            className="h-8"
+            className="h-8 hidden md:block"
             onClick={() => {
               handlePrevSong(tracks, shuffle);
             }}
@@ -77,10 +77,11 @@ const PlayerControl = ({ tracks }) => {
             <BsPause
               style={{
                 filter:
-                  "invert(24%) sepia(38%) saturate(660%) hue-rotate(351deg) brightness(100%) contrast(97%)", transform : 'scale(2.4)', margin:'0 0.4rem' 
+                  "invert(24%) sepia(38%) saturate(660%) hue-rotate(351deg) brightness(100%) contrast(97%)",
+                transform: "scale(2.4)",
+                margin: "0 0.4rem",
               }}
               onClick={handlePlayPause}
-              
             />
           ) : (
             <img
@@ -102,7 +103,7 @@ const PlayerControl = ({ tracks }) => {
           <img
             src={repeatIcon}
             alt="repeat"
-            className="h-8"
+            className="h-8 hidden md:block"
             style={
               repeat
                 ? {
@@ -128,6 +129,7 @@ const PlayerControl = ({ tracks }) => {
           onLoadedData={(event) => setDuration(event.target.duration)}
         />
         <Seekbar
+          className="hidden md:block"
           value={appTime}
           min="0"
           max={duration}
@@ -135,11 +137,10 @@ const PlayerControl = ({ tracks }) => {
           setSeekTime={setSeekTime}
           appTime={appTime}
         />
-        {/* <span className="line">u</span> */}
-        {/* <div className="track-length">lj</div> */}
       </div>
       {/* //volumebar */}
       <VolumeBar
+        className="hidden md:block"
         value={volume}
         min="0"
         max="1"
