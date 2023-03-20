@@ -31,7 +31,7 @@ const Carousel = ({songData}) => {
   // to={each.type === 'album' ? `album/${each.title}` : null}
 
   return (
-    <div className="carousel flex text-light text-left">
+    <div className="carousel flex text-light text-left gap-5">
       {songs}
     </div>
   );
