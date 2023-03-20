@@ -1,13 +1,12 @@
 .carousel {
-  gap: 30px;
   overflow-x: scroll;
   margin: 13px 0;
   margin-bottom: 30px;
   &::-webkit-scrollbar {
     display: none;
   }
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+  // -ms-overflow-style: none;
+  // scrollbar-width: none;
   scroll-behavior: smooth;
   flex-wrap: nowrap;
 }
