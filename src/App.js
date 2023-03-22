@@ -16,8 +16,8 @@ function App() {
       <Routes>
         <Route exact path="" element={<Overview chartB={leadImage} />}>
           <Route path="/" element={<Homepage />} />
-          <Route path="album" element={<ChartAlbum />}>
-            <Route path=":id" element={<Collections />} />
+          <Route path=":id/album" element={<ChartAlbum />}>
+            {/* <Route path=":id" element={<Collections />} /> */}
           </Route>
           <Route path="collections" element={<Collections />} />
           <Route path="signin" element={<Select/>} />
