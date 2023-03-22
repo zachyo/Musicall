@@ -8,6 +8,7 @@ export const TimeVolumeProvider = ({ children }) => {
   const [seekTime, setSeekTime] = useState(0);
   const [appTime, setAppTime] = useState(0);
   const [volume, setVolume] = useState(0.3);
+  // const [albumDuration, setAlbumDuration] = useState('')
 
   return (
     <TimeVolumeContext.Provider value={{ duration, seekTime, appTime, volume, setVolume, setAppTime, setDuration, setSeekTime }}>
