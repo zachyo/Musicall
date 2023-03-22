@@ -1,23 +1,53 @@
 import { useContext } from "react";
 import heart from "../../assets/icons/Heart.svg";
+import dotted from "../../assets/icons/more-vertical.svg";
+
 import NowPlayingContext from "../../contexts/nowPlayingContext";
 
-import './song-card.scss'
+import "./song-card.scss";
 
-const SongCard = ({ song }) => {
-    const { handleClick } = useContext(NowPlayingContext);
+const SongCard = ({ song, img, title, handleSong }) => {
+  const { handleClick } = useContext(NowPlayingContext);
+  function toSentenceCase(str) {
+    return str.toLowerCase().charAt(0).toUpperCase() + str.slice(1);
+  }
+  const getDuration = (time) =>
+    `${Math.floor(time / 60)}:${`0${Math.floor(time % 60)}`.slice(-2)}`;
+
   return (
-    <div className="song-card flex items-center p-2 px-3 text-light" onClick={()=>handleClick(song)}>
-      <div className="flex items-center justify-center space-x-5 mr-20">
-        <img src={song.img} alt="" className="h-10 w-10 rounded-xl" />
-        <img src={heart} alt="" />
+    <div
+      className="song-card flex items-center justify-between mb-[14px] p-2 px-3 text-light text-xs md:text-base md:mb-[10px]"
+      onClick={handleSong}
+    >
+      <div className="flex">
+        <div className="flex items-center justify-center space-x-5 mr-3 md:mr-20">
+          <img src={img} alt="" className="h-10 w-10 rounded-xl" />
+          <img src={heart} alt="" className="hidden md:block" />
+        </div>
+        <div className="md:hidden">
+          <div className="title text-left mb-1">
+            {toSentenceCase(song.title)}
+          </div>
+          <div className="title text-left">{song.artist.name}</div>
+        </div>
       </div>
-      <div className="title w-1/3 text-left">{song.title}</div>
-      <div className="title w-1/5 text-left">Artiste</div>
-      <p className="w-1/5">Album name</p>
-      <p className="w-1/5">Song duration</p>
-      <div className="w-1/6">
-        <img src="" alt="" />
+
+      <div className="hidden md:block title w-1/3 text-left">
+        {toSentenceCase(song.title)}
+      </div>
+      <div className="hidden md:block title w-1/5 text-left">
+        {song.artist.name}
+      </div>
+      <p className="hidden md:block w-1/5">{title}</p>
+      <div className="md:hidden">
+        <div className="ml-4">
+          <img src={dotted} alt="options" />
+        </div>
+        <p className="">{getDuration(song.duration)}</p>
+      </div>
+      <p className="hidden md:block w-1/5">{getDuration(song.duration)}</p>
+      <div className="hidden md:block w-[4%]">
+        <img src={dotted} alt="options" />
       </div>
     </div>
     // <div>
