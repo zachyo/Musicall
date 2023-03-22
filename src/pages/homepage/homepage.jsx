@@ -7,8 +7,11 @@ import Carousel from "../../components/carousel/carousel";
 import useFetch from "../../utilities/useFetch";
 import cardsListData from "../../utilities/cardsData";
 import { tracksData } from "../../utilities/tracksData";
+import { useContext } from "react";
+import SearchContext from "../../contexts/searchContext";
 
 const Homepage = () => {
+  const {setCardList} = useContext(SearchContext)
 
   const CardList = () => {
     let randArr = []
@@ -21,9 +24,10 @@ const Homepage = () => {
         newList.push(list[randNum])
       }
     }
+    // setCardList(randArr)
     console.log(newList)
-    return newList.map(card => {
-      return <ChartCard key={card.id} card={card} />
+    return newList.map((card, i) => {
+      return <ChartCard key={card.id} card={card} num={randArr[i]} />
     })
   }
 // www.totaltypescript.com
