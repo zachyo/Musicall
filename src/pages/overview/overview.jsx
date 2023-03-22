@@ -28,7 +28,7 @@ const Overview = ({ chartB }) => {
                 className="overview"
                 // style={{ backgroundImage: `url(${chartB})` }}
               >
-                <div className="flex justify-around">
+                <div className="flex justify-around md:justify-center">
                   <SideNav />
 
                   <div className="overview-container">
