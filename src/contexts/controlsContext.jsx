@@ -1,5 +1,4 @@
 import { createContext, useContext, useState } from "react";
-import NowPlayingContext from "./nowPlayingContext";
 
 const ControlsContext = createContext();
 

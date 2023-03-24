@@ -13,8 +13,15 @@ export const NowPlayingContextProvider = ({ children }) => {
   });
   const [isPlaying, setIsPlaying] = useState(false);
   const [songIndex, setSongIndex] = useState(0);
+  const [option, setOption] = useState('album')
 
   const handleNowPlaying = (song, i) => {
+    /*
+    check zustand if user is logged in
+    if yes, continue
+    if no, break and navigate to login page
+    */
+
     if (song.title === nowPlaying.title) {
       setIsPlaying((prev) => !prev);
     } else {
@@ -52,6 +59,8 @@ export const NowPlayingContextProvider = ({ children }) => {
       value={{
         nowPlaying,
         isPlaying,
+        option,
+        setOption,
         handleNowPlaying,
         handlePlayPause,
         handlePrevSong,
