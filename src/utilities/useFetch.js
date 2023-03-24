@@ -1,5 +1,5 @@
 import { useEffect, useReducer, useRef } from "react";
-// //** 
+// //**
 // @param {string} url - fetch link
 
 // */
@@ -49,15 +49,16 @@ function useFetch(url) {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          'Access-Control-Allow-Origin': '*',
-          mode : 'no-cors'
-        }
+          "Access-Control-Allow-Origin": "ORIGIN",
+          "Access-Control-Allow-Headers": "*",
+          mode: "cors",
+        },
       };
 
       await fetch(url, options)
         .then((res) => {
           if (!res.ok) {
-            console.log(res)
+            console.log(res);
             throw new Error(res.statusText);
           } else return res.json();
         })
