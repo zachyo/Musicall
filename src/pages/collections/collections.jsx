@@ -9,15 +9,15 @@ const Collections = () => {
     (song) => song.collection === option
   ).map((song) => {
     return (
-      <div className="badge" style={{ backgroundImage: `url(${song.img})` }}>
-        <h1 style={{fontSize: '21px'}}>{song.title}</h1>
-        <p>John Watts</p>
+      <div className="badge flex flex-col justify-end rounded-[20px] h-[137px] md:h-[214px] bg-cover pl-3 pb-4 md:pl-5 md:pb-5 text-sm text-left mr-5" style={{ backgroundImage: `url(${song.img})` }}>
+        <h1 className='text-xl w-32 md:w-48 truncate'>{song.title}</h1>
+        <p className="text-[10px] opacity-80">John Watts</p>
       </div>
     );
   });
 
   return (
-    <div className="collections-page text-light">
+    <div className="collections-page text-light h-[88vh] w-[88vw]">
       <div className="collections-nav text-left">
         <button
           className={option === "mine" ? "active" : ""}
@@ -37,7 +37,7 @@ const Collections = () => {
         </button>{" "}
       </div>
 
-      <div className="flex mt-7">{myCollection}</div>
+      <div className="coll flex mt-7">{myCollection}</div>
     </div>
   );
 };
