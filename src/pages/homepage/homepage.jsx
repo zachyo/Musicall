@@ -7,7 +7,7 @@ import Carousel from "../../components/carousel/carousel";
 import useFetch from "../../utilities/useFetch";
 import cardsListData from "../../utilities/cardsData";
 import { tracksData } from "../../utilities/tracksData";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import SearchContext from "../../contexts/searchContext";
 
 const Homepage = () => {
@@ -27,7 +27,7 @@ const Homepage = () => {
     // setCardList(randArr)
     console.log(newList)
     return newList.map((card, i) => {
-      return <ChartCard key={card.id} card={card} num={randArr[i]} />
+      return <ChartCard key={card.id} card={card} num={randArr[i]} id={card.id}/>
     })
   }
 // www.totaltypescript.com
@@ -40,6 +40,15 @@ const Homepage = () => {
     // "https://shazam-core.p.rapidapi.com/v1/search/multi?query=metallica&search_type=SONGS"
   );
   console.log(data, error);
+
+useEffect(()=>{
+  /*
+  the data will be stored in zustand
+  set data to player control as normal tracks tracklist
+  */
+})
+
+
   return (
     <div className="outlet flex flex-col justify-center">
       <div className="text-left flex flex-col justify-center m-4 md:m-0 gap-8 md:flex-row ">
@@ -58,7 +67,7 @@ const Homepage = () => {
             <p className="mt-8 md:m-0">33k Likes</p>
           </div>
 
-          <div className="hero-svg hidden">
+          <div className="hero-svg hidden md:block">
             <svg
               width="500"
               height="373"
@@ -74,7 +83,7 @@ const Homepage = () => {
               />
             </svg>
           </div>
-          <div className="hero-img animate-slideright hidden">
+          <div className="hero-img animate-slideright hidden md:block">
             <img src={heroImg} alt="heroImage" />
           </div>
         </div>
