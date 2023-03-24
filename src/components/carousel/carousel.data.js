@@ -90,6 +90,20 @@ const CARDS_DATA = [
     type: "album",
     collection: "mine",
   },
+  {
+    id: 12,
+    title: "Mountain",
+    img: R15,
+    type: "album",
+    collection: "mine",
+  },
+  {
+    id: 13,
+    title: "Mountain",
+    img: R15,
+    type: "album",
+    collection: "mine",
+  },
 ];
 
 export default CARDS_DATA;
