@@ -10,6 +10,7 @@ import useFetch from "../../utilities/useFetch";
 import { useContext, useEffect, useState } from "react";
 import { getTime, totalTime } from "../../utilities/utils";
 import NowPlayingContext from "../../contexts/nowPlayingContext";
+import Spinner from "../../components/spinner/spinner.component";
 
 const ChartAlbum = () => {
   //   const location = useLocation(); //not necesarry
@@ -30,8 +31,9 @@ const ChartAlbum = () => {
 
   if (option === "album") {
     fetchLink = `https://api.deezer.com/${option}/${newData.id}/tracks`;
-  } else
+  } else if (option === "artist") {
     fetchLink = `https://api.deezer.com/${option}/${newData.id}/top?limit=20`;
+  } else fetchLink = `https://api.deezer.com/${option}/${newData.id}/tracks/?limit=20`;
 
   //fetching album data
   const { loading, error, data } = useFetch(fetchLink);
@@ -42,13 +44,19 @@ const ChartAlbum = () => {
     fullDuration = getTime(totalTime(albumListData));
   }
 
+  const handlePlayAll = () => {
+    //sets the global player tracks zustand value to the loaded tracklist
+    //then plays the tracklist from the top using handleNowPlaying(albumListData[0], 0)
+  };
+
   //albumTracks
   const albumList = albumListData?.map((song, i) => {
     return (
       <SongCard
         song={song}
         key={song.id}
-        img={newData.cover}
+        //each.album.cover for image
+        img={option !== "album" ? song?.album?.cover : newData.cover}
         title={newData.title}
         handleSong={() => handleNowPlaying(song, i)}
       />
@@ -68,8 +76,10 @@ const ChartAlbum = () => {
     >
       <div className="album-header flex flex-col items-start pl-4 mt-12 md:p-0 md:ml-0 md:flex-row md:items-end">
         <img
-          src={newData.cover_medium}
-          alt=""
+          src={
+            option === "album" ? newData.cover_medium : newData.picture_medium
+          }
+          alt="album_picture"
           className="ml-3 mb-4 rounded-[2.1rem] md:m-0 md:ml-5"
         />
         <div className=" album-header_description text-left  text-sm text-light w-auto mt-4 mr-3 md:m-0 md:px-8 md:w-[550px]">
@@ -88,12 +98,16 @@ const ChartAlbum = () => {
             {option === "album" ? newData.artist.name : ""}
           </p>
           <p>
-            {data?.total}
-            {option !== "podcast" && <>songs ~</>} {fullDuration}
+            {/* {option === "artist" ? 20 : data?.total} */}
+            {albumList?.length}
+            {option !== "podcast" && <> songs ~</>} {fullDuration}
           </p>
 
           <div className="action-buttons flex space-x-3 mt-10">
-            <button className="text-[12px] p-3 flex items-center md:px-3 md:py-4">
+            <button
+              className="text-[12px] p-3 flex items-center md:px-3 md:py-4"
+              onClick={handlePlayAll}
+            >
               <img src={play} alt="play" className="mr-3" /> Play all
             </button>
             <button className="text-[12px] p-3 flex items-center md:px-3 md:py-4">
@@ -106,7 +120,7 @@ const ChartAlbum = () => {
         </div>
       </div>
       <div className="album-list mt-12 px-4 md:p-0 md:w-[86.8vw]">
-        {albumList}
+        {loading ? <Spinner /> : albumList}
       </div>
       {/* This is the album page */}
     </div>
