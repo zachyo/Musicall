@@ -26,7 +26,7 @@ const SideNav = () => {
       <div className="side-nav_links">
         <div className="side-nav_top mb-6 flex flex-col items-center justify-center bg-black rounded-full py-5 px-1">
           <CustomIcon iconn={home} to={"/"} />
-          <CustomIcon iconn={musicLibrary} to={"1/album"} />
+          <CustomIcon iconn={musicLibrary} to={"album/1"} />
           <CustomIcon iconn={radio} to={'playlists'} />
           <CustomIcon iconn={video} to={"artists"} />
         </div>
