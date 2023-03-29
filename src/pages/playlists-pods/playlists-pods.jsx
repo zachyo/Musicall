@@ -1,11 +1,11 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import CARDS_DATA from "../../components/carousel/carousel.data";
 import NowPlayingContext from "../../contexts/nowPlayingContext";
+import { tracksData } from "../../utilities/tracksData";
 import "../collections/collections.scss";
 
 const PlaylistsAndPods = () => {
-  const [option, setOptionn] = useState("mine");
   const { setOption } = useContext(NowPlayingContext);
 
   const navigate = useNavigate();
@@ -14,37 +14,35 @@ const PlaylistsAndPods = () => {
     navigate(`/album/${num}`);
   };
   //fetch playlists data and populate here
-  const playlists = CARDS_DATA.filter((song) => song.collection === option).map(
-    (song, i) => {
-      return (
-        <div
-          className="badge flex flex-col justify-end rounded-[20px] h-[137px] md:h-[214px] bg-cover pl-3 pb-4 md:pl-5 md:pb-5 text-sm text-left mr-5"
-          style={{ backgroundImage: `url(${song.img})` }}
-          onClick={() => {
-            handleClick(i, "playlist");
-          }}
-          key={i}
-        >
-          <h1 className="text-xl w-32 md:w-48 truncate">{song.title}</h1>
-          <p className="text-[10px] opacity-80">John Watts</p>
-        </div>
-      );
-    }
-  );
+  const playlists = tracksData.playlists.data.map((playlist, i) => {
+    return (
+      <div
+        className="badge flex flex-col justify-end rounded-[20px] h-[137px] md:h-[214px] bg-cover pl-3 pb-4 md:pl-5 md:pb-5 text-sm text-left mr-5"
+        style={{ backgroundImage: `url(${playlist.picture_medium})` }}
+        onClick={() => {
+          handleClick(i, "playlist");
+        }}
+        key={i}
+      >
+        <h1 className="text-xl w-32 md:w-48 truncate">{playlist.title}</h1>
+        <p className="text-[10px] opacity-80">{playlist.user.name}</p>
+      </div>
+    );
+  });
   //fetch podcasts data and populate here
-  const podcasts = CARDS_DATA.filter((song) => song.collection === "liked").map(
-    (song, i) => {
+  const podcasts = tracksData.podcasts.data.map(
+    (podcast, i) => {
       return (
         <div
           className="badge flex flex-col justify-end rounded-[20px] h-[137px] md:h-[214px] bg-cover pl-3 pb-4 md:pl-5 md:pb-5 text-sm text-left mr-5"
-          style={{ backgroundImage: `url(${song.img})` }}
+          style={{ backgroundImage: `url(${podcast.picture})` }}
           onClick={() => {
             handleClick(i, "podcast");
           }}
           key={i}
         >
-          <h1 className="text-xl w-32 md:w-48 truncate">{song.title}</h1>
-          <p className="text-[10px] opacity-80">John Watts</p>
+          <h1 className="text-xl w-32 md:w-48 truncate">{podcast.title}</h1>
+          {/* <p className="text-[10px] opacity-80">John Watts</p> */}
         </div>
       );
     }
