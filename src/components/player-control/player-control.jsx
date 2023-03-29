@@ -38,14 +38,14 @@ const PlayerControl = ({ tracks }) => {
     <div className="player-control flex h-24 bg-black fixed bottom-0 z-10 w-full text-white px-4 items-center justify-between md:justify-around md:p-10">
       <div className="song-details flex items-center">
         <img
-          src={nowPlaying?.album.cover}
+          src={nowPlaying?.album?.cover}
           alt=""
           className="h-12 mr-2 md:mr-4 rounded-xl"
         />
         <div className="text-left text-lightSteel font-bold">
           <h1 className="w-48">{nowPlaying?.title}</h1>
           <small className="text-sandy truncate font-normal">
-            {nowPlaying?.artist.name}
+            {nowPlaying?.artist?.name}
           </small>
         </div>
       </div>
