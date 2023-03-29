@@ -31,7 +31,6 @@ const ArtistsAndAlbums = () => {
         key={i}
       >
         <h1 className="text-xl w-32 md:w-48 truncate">{artist.name}</h1>
-        {/* <p className="text-[10px] opacity-80">John Watts</p> */}
       </div>
     );
   });
