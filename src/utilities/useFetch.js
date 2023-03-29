@@ -51,11 +51,11 @@ function useFetch(url) {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "ORIGIN",
           "Access-Control-Allow-Headers": "*",
-          mode: "cors",
+          mode: "no-cors",
         },
       };
 
-      await fetch(url, options)
+      await fetch(`https://cors-anywhere.herokuapp.com/${url}`, options)
         .then((res) => {
           if (!res.ok) {
             console.log(res);
