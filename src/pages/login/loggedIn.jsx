@@ -4,7 +4,7 @@ const LoggedIn = () => {
   //not sure
   const user = localStorage.getItem("user");
   return (
-    <div className="signin h-[55vw]">
+    <div className="signin h-[90vh] md:w-[88vw]">
       <h1 className="mt-32 mb-12 text-4xl font-bold text-lightSteel">
         Welcome to Musicall
       </h1>
