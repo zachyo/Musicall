@@ -1,12 +1,12 @@
-import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import heart from '../../assets/icons/Heart.svg'
-import NowPlayingContext from '../../contexts/nowPlayingContext';
+
+import useMusicallStore from '../../store/musicallStore';
 import './chart-card.scss';
 
 const ChartCard = ({card, num}) => {
-  const { setOption } = useContext(NowPlayingContext);
-  const {title, artist, cover,id} = card
+  const setOption = useMusicallStore((state) => state.setAlbumOption);
+  const {title, artist, cover} = card
   const navigate = useNavigate();
   const handleClick = () => {
     setOption('album')
