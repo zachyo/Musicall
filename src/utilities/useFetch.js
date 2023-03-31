@@ -56,7 +56,7 @@ function useFetch(url) {
         },
       };
 // `https://cors-anywhere.herokuapp.com/${url}`
-      await fetch(url, options)
+      await fetch(`https://cors-anywhere.herokuapp.com/${url}`, options)
         .then((res) => {
           if (!res.ok) {
             console.log(res);
