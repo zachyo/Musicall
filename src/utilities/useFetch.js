@@ -4,6 +4,7 @@ import { useEffect, useReducer, useRef } from "react";
 
 // */
 function useFetch(url) {
+  console.log(url)
   const cache = useRef({});
 
   // Used to prevent state update if the component is unmounted
@@ -54,8 +55,8 @@ function useFetch(url) {
           mode: "no-cors",
         },
       };
-
-      await fetch(`https://cors-anywhere.herokuapp.com/${url}`, options)
+// `https://cors-anywhere.herokuapp.com/${url}`
+      await fetch(url, options)
         .then((res) => {
           if (!res.ok) {
             console.log(res);
