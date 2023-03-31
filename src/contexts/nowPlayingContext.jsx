@@ -1,19 +1,16 @@
-import { createContext, useContext, useState } from "react";
-import R14 from "../assets/images/Rectangle14.png";
-import ControlsContext from "./controlsContext";
+import { createContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import useMusicallStore from "../store/musicallStore";
+import { tracksData } from "../utilities/tracksData";
 
 const NowPlayingContext = createContext();
 
 export const NowPlayingContextProvider = ({ children }) => {
-  const [nowPlaying, setNowPlaying] = useState({
-    id: 1,
-    title: "Life in a circle",
-    artist: { name: "James" },
-    album : {cover : R14}
-  });
+  const [nowPlaying, setNowPlaying] = useState(tracksData.tracks.data[0]);
   const [isPlaying, setIsPlaying] = useState(false);
   const [songIndex, setSongIndex] = useState(0);
-  const [option, setOption] = useState('album')
+  const userLoggedIn = useMusicallStore((state) => state.userLoggedIn);
+  const navigate = useNavigate();
 
   const handleNowPlaying = (song, i) => {
     /*
@@ -21,13 +18,17 @@ export const NowPlayingContextProvider = ({ children }) => {
     if yes, continue
     if no, break and navigate to login page
     */
-
-    if (song.title === nowPlaying.title) {
-      setIsPlaying((prev) => !prev);
+    if (!userLoggedIn) {
+      setIsPlaying(false);
+      navigate("/signin");
     } else {
-      setNowPlaying(song);
-      setIsPlaying(true);
-      setSongIndex(i);
+      if (song.title === nowPlaying.title) {
+        setIsPlaying((prev) => !prev);
+      } else {
+        setNowPlaying(song);
+        setIsPlaying(true);
+        setSongIndex(i);
+      }
     }
   };
   const handlePlayPause = () => {
@@ -59,8 +60,6 @@ export const NowPlayingContextProvider = ({ children }) => {
       value={{
         nowPlaying,
         isPlaying,
-        option,
-        setOption,
         handleNowPlaying,
         handlePlayPause,
         handlePrevSong,
