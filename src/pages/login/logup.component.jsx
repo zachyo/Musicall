@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import FormInput from "../../components/form-input/form-input.component";
@@ -20,7 +20,6 @@ const SignUp = () => {
   });
   const [isSending, setIsSending] = useState(false);
   const { first_name, last_name, email, password, gender, username } = user;
-  const navigate = useNavigate();
   const notifySuccess = () =>
     toast.info("Account Created", {
       position: "top-right",
@@ -75,16 +74,16 @@ const SignUp = () => {
         return res.json();
       })
       .then((data) => {
-        if (data.message === "User Created") {
+        if (data.msg === "User Created") {
           notifySuccess();
         }
         console.log(data);
         localStorage.setItem("user", data.user);
         setTimeout(function () {
           setIsSending(false);
-          data.message === "User Created"
+          data.msg === "User Created"
             ? window.location.reload()
-            : console.log(data.message);
+            : console.log(data.msg);
         }, 2000);
         clearUser();
       });
@@ -181,7 +180,7 @@ const SignUp = () => {
             type="submit"
             disabled={isSending}
             onClick={handleSubmit}
-            className=""
+            className="md:text-2xl"
           >
             {isSending === true ? <Spinner /> : "Create Account"}
           </button>
