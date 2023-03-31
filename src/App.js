@@ -18,12 +18,13 @@ function App() {
       <Routes>
         <Route exact path="" element={<Overview chartB={leadImage} />}>
           <Route path="/" element={<Homepage />} />
+          <Route path="/home" element={<Homepage />} />
           <Route path="album/:id" element={<ChartAlbum />}>
             {/* <Route path=":id" element={<Collections />} /> */}
           </Route>
           <Route path="artists" element={<ArtistsAndAlbums />} />
-          <Route path="playlists" element={<PlaylistsAndPods/>} />
-          <Route path="collections" element={<Collections />} />
+          <Route path="playlists" element={<PlaylistsAndPods />} />
+          <Route path="profile" element={<Collections />} />
           <Route path="signin" element={<Select />} />
           <Route path="loggedin" element={<LoggedIn />} />
         </Route>
