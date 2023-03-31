@@ -50,7 +50,7 @@ const ArtistsAndAlbums = () => {
   });
 
   return (
-    <div className="collections-page text-light mt-8 h-[110vh] w-[88vw]">
+    <div className="collections-page text-light mt-8 h-[110vh] w-[99vw] px-4 md:p-0 md:w-[88vw]">
       <div className="artists mb-16">
         <h1 className="text-left text-xl md:text-3xl font-bold">Top Artists</h1>
         <div className="coll flex mt-7">{artists}</div>
