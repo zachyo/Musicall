@@ -7,18 +7,27 @@ import SongCard from "../../components/song-card/song-card";
 import { useParams } from "react-router-dom";
 import { tracksData } from "../../utilities/tracksData";
 import useFetch from "../../utilities/useFetch";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { getTime, totalTime } from "../../utilities/utils";
 import NowPlayingContext from "../../contexts/nowPlayingContext";
 import Spinner from "../../components/spinner/spinner.component";
+import useMusicallStore from "../../store/musicallStore";
 
 const ChartAlbum = () => {
-  //   const location = useLocation(); //not necesarry
   let fullDuration = "";
   let fetchLink = "";
-  const { option, handleNowPlaying } = useContext(NowPlayingContext);
+  const { handleNowPlaying } = useContext(NowPlayingContext);
+  const setAlbumId = useMusicallStore((state) => state.setAlbumId);
+  const setCurrentTracklist = useMusicallStore(
+    (state) => state.setCurrentTracklist
+  );
+  const option = useMusicallStore((state)=>state.albumOption)
 
   const { id } = useParams();
+  /*
+  the id will be pegged for effective navigation
+  */
+  setAlbumId(id);
 
   let newData;
   if (option === "album") {
@@ -33,7 +42,8 @@ const ChartAlbum = () => {
     fetchLink = `https://api.deezer.com/${option}/${newData.id}/tracks`;
   } else if (option === "artist") {
     fetchLink = `https://api.deezer.com/${option}/${newData.id}/top?limit=20`;
-  } else fetchLink = `https://api.deezer.com/${option}/${newData.id}/tracks/?limit=20`;
+  } else
+    fetchLink = `https://api.deezer.com/${option}/${newData.id}/tracks/?limit=20`;
 
   //fetching album data
   const { loading, error, data } = useFetch(fetchLink);
@@ -46,10 +56,14 @@ const ChartAlbum = () => {
 
   const handlePlayAll = () => {
     //sets the global player tracks zustand value to the loaded tracklist
+    setCurrentTracklist(albumListData);
+
     //then plays the tracklist from the top using handleNowPlaying(albumListData[0], 0)
+    handleNowPlaying(albumListData[0], 0);
   };
 
   //albumTracks
+  // tracklist changes once songplay is initiated
   const albumList = albumListData?.map((song, i) => {
     return (
       <SongCard
@@ -58,17 +72,14 @@ const ChartAlbum = () => {
         //each.album.cover for image
         img={option !== "album" ? song?.album?.cover : newData.cover}
         title={newData.title}
-        handleSong={() => handleNowPlaying(song, i)}
+        handleSong={() => {
+          setCurrentTracklist(albumListData);
+          handleNowPlaying(song, i);
+        }}
       />
     );
   });
 
-  useEffect(() => {
-    /*
-  the data will be stored in zustand
-  set data of the album to player control as normal album tracklist
-  */
-  });
   return (
     <div
       className="chart-album w-full"
