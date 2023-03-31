@@ -52,11 +52,11 @@ function useFetch(url) {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "ORIGIN",
           "Access-Control-Allow-Headers": "*",
-          mode: "no-cors",
+          mode: "cors",
         },
       };
 // `https://cors-anywhere.herokuapp.com/${url}`
-      await fetch(`https://cors-anywhere.herokuapp.com/${url}`, options)
+      await fetch(`https://cors-proxy.fringe.zone/${url}`, options)
         .then((res) => {
           if (!res.ok) {
             console.log(res);
