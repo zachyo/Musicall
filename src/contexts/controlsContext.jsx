@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useState } from "react";
 
 const ControlsContext = createContext();
 
@@ -6,10 +6,6 @@ export const ControlsContextProvider = ({ children }) => {
 
   const [shuffle, setShuffle] = useState(false);
   const [repeat, setRepeat] = useState(false);
-  const [prevSong, setPrevSong] = useState({});
-
-  //next button sets nowPlaying, prevSong and nextSong
-  //prev button sets nowPlaying, prevSong and nextSong
   
   const handleShuffle = () => {
     setShuffle((prev) => !prev);
