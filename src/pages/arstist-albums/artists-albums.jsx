@@ -1,12 +1,10 @@
-import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import CARDS_DATA from "../../components/carousel/carousel.data";
-import NowPlayingContext from "../../contexts/nowPlayingContext";
+import useMusicallStore from "../../store/musicallStore";
 import { tracksData } from "../../utilities/tracksData";
 import "../collections/collections.scss";
 
 const ArtistsAndAlbums = () => {
-  const { setOption } = useContext(NowPlayingContext);
+  const setOption = useMusicallStore((state) => state.setAlbumOption);
 
   const navigate = useNavigate();
   const handleClick = (num, val) => {
