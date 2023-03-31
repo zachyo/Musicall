@@ -5,34 +5,35 @@ import heroImg from "../../assets/images/heroImg.png";
 
 import Carousel from "../../components/carousel/carousel";
 import useFetch from "../../utilities/useFetch";
-import cardsListData from "../../utilities/cardsData";
 import { tracksData } from "../../utilities/tracksData";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import SearchContext from "../../contexts/searchContext";
 
 const Homepage = () => {
-  const {setCardList} = useContext(SearchContext)
+  const { setCardList } = useContext(SearchContext);
 
   const CardList = () => {
-    let randArr = []
-    let list = tracksData.albums.data
-    let newList = []
+    let randArr = [];
+    let list = tracksData.albums.data;
+    let newList = [];
     while (randArr.length < 3) {
-      let randNum = Math.floor(Math.random() * list.length)
+      let randNum = Math.floor(Math.random() * list.length);
       if (!randArr.includes(randNum)) {
-        randArr.push(randNum)
-        newList.push(list[randNum])
+        randArr.push(randNum);
+        newList.push(list[randNum]);
       }
     }
     // setCardList(randArr)
-    console.log(newList)
+    console.log(newList);
     return newList.map((card, i) => {
-      return <ChartCard key={card.id} card={card} num={randArr[i]} id={card.id}/>
-    })
-  }
-// www.totaltypescript.com
-// www.typescriptlang.org
-// checkout js docs
+      return (
+        <ChartCard key={card.id} card={card} num={randArr[i]} id={card.id} />
+      );
+    });
+  };
+  // www.totaltypescript.com
+  // www.typescriptlang.org
+  // checkout js docs
   const { loading, error, data } = useFetch(
     // "https://musica-api.up.railway.app/new"
     // 'https://shazam.p.rapidapi.com/charts/track'
@@ -40,14 +41,6 @@ const Homepage = () => {
     // "https://shazam-core.p.rapidapi.com/v1/search/multi?query=metallica&search_type=SONGS"
   );
   console.log(data, error);
-
-useEffect(()=>{
-  /*
-  the data will be stored in zustand
-  set data to player control as normal tracks tracklist
-  */
-})
-
 
   return (
     <div className="outlet flex flex-col justify-center">
