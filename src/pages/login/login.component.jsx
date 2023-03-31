@@ -1,10 +1,11 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import FormInput from "../../components/form-input/form-input.component";
 import Spinner from "../../components/spinner/spinner.component";
-import UserContext from "../../contexts/userContext";
+
+import useMusicallStore from "../../store/musicallStore";
 // import google from "../assets/icons/Google.png";
 // import facebook from "../assets/icons/Facebook.png";
 import "./signin.styles.scss";
@@ -15,14 +16,14 @@ const SignIn = () => {
     email: "",
     password: "",
   });
-  const {setUserDoc} = useContext(UserContext)
   const [isSending, setIsSending] = useState(false);
   const { email, password } = user;
   const navigate = useNavigate();
+  const setUserLoggedIn = useMusicallStore((state) => state.setUserLoggedIn);
   const notifySuccess = () =>
     toast.info("LogIn Successfull", {
       position: "top-right",
-      autoClose: 2000,
+      autoClose: 1500,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -75,15 +76,16 @@ const SignIn = () => {
       .then((data) => {
         if (data.msg === "login Successful") {
           notifySuccess();
+          setUserLoggedIn(true);
         }
         console.log(data);
         setTimeout(function () {
           setIsSending(false);
+          clearUser();
           data.msg === "login Successful"
             ? navigate("/loggedin")
             : console.log(data.msg);
         }, 2000);
-        // clearUser();
       });
   };
 
@@ -137,7 +139,7 @@ const SignIn = () => {
             onClick={handleSubmit}
             className="md:text-2xl"
           >
-            {isSending === true ? <Spinner /> : "Create Account"}
+            {isSending === true ? <Spinner /> : "Login"}
           </button>
         </form>
         {/* <p>
