@@ -1,12 +1,10 @@
-import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import CARDS_DATA from "../../components/carousel/carousel.data";
-import NowPlayingContext from "../../contexts/nowPlayingContext";
+import useMusicallStore from "../../store/musicallStore";
 import { tracksData } from "../../utilities/tracksData";
 import "../collections/collections.scss";
 
 const PlaylistsAndPods = () => {
-  const { setOption } = useContext(NowPlayingContext);
+  const setOption = useMusicallStore((state) => state.setAlbumOption);
 
   const navigate = useNavigate();
   const handleClick = (num, val) => {
@@ -30,23 +28,21 @@ const PlaylistsAndPods = () => {
     );
   });
   //fetch podcasts data and populate here
-  const podcasts = tracksData.podcasts.data.map(
-    (podcast, i) => {
-      return (
-        <div
-          className="badge flex flex-col justify-end rounded-[20px] h-[137px] md:h-[214px] bg-cover pl-3 pb-4 md:pl-5 md:pb-5 text-sm text-left mr-5"
-          style={{ backgroundImage: `url(${podcast.picture})` }}
-          onClick={() => {
-            handleClick(i, "podcast");
-          }}
-          key={i}
-        >
-          <h1 className="text-xl w-32 md:w-48 truncate">{podcast.title}</h1>
-          {/* <p className="text-[10px] opacity-80">John Watts</p> */}
-        </div>
-      );
-    }
-  );
+  const podcasts = tracksData.podcasts.data.map((podcast, i) => {
+    return (
+      <div
+        className="badge flex flex-col justify-end rounded-[20px] h-[137px] md:h-[214px] bg-cover pl-3 pb-4 md:pl-5 md:pb-5 text-sm text-left mr-5"
+        style={{ backgroundImage: `url(${podcast.picture})` }}
+        onClick={() => {
+          handleClick(i, "podcast");
+        }}
+        key={i}
+      >
+        <h1 className="text-xl w-32 md:w-48 truncate">{podcast.title}</h1>
+        {/* <p className="text-[10px] opacity-80">John Watts</p> */}
+      </div>
+    );
+  });
 
   return (
     <div className="collections-page text-light mt-8 h-[110vh] w-[88vw]">
