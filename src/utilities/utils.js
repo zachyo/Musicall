@@ -19,7 +19,6 @@ export const getTime = (time) => {
     mins = mins - 60;
   }
   if (hr > 0) {
-    console.log(hr);
     return `${hr}hr : ${mins}mins : ${`0${Math.floor(time % 60)}`.slice(
       -2
     )}secs`;
