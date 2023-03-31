@@ -17,7 +17,7 @@ const Collections = () => {
   });
 
   return (
-    <div className="collections-page text-light h-[88vh] w-[88vw]">
+    <div className="collections-page text-light h-[88vh] w-[99vw] px-4 md:p-0 md:w-[88vw]">
       <div className="collections-nav text-left">
         <button
           className={option === "mine" ? "active" : ""}
