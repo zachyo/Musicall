@@ -66,7 +66,7 @@ const MobileNav = () => {
           <CustomIcon
             iconn={logout}
             text="Log out"
-            to='kj'
+            to='k'
             onClick={() => setUserLoggedIn(false)}
           />
         </div>
