@@ -19,7 +19,7 @@
   .coll {
     overflow-x: scroll;
     scroll-behavior: smooth;
-    flex-wrap: nowrap;
+    // flex-wrap: nowrap;
     &::-webkit-scrollbar {
       display: none;
     }

@@ -7,6 +7,7 @@ import logout from "../../assets/icons/Logout.svg";
 
 import { Link, NavLink } from "react-router-dom";
 import useMusicallStore from "../../store/musicallStore";
+import { X } from "lucide-react";
 
 const MobileNav = () => {
   const albumId = useMusicallStore((state) => state.albumId);
@@ -42,14 +43,14 @@ const MobileNav = () => {
       }
     >
       <div className="mt-16 ">
-        <div className="mb-6 flex flex-col py-5 pl-6">
-          <h1
+        <div className="mb-6 flex flex-col py-5 pl-6 relative">
+          {/* <h1 onClick={() => {}}>Close button</h1> */}
+          <X
             onClick={() => {
               setShowNav("hidden");
             }}
-          >
-            Close button
-          </h1>
+            className="absolute -top-8 right-6 bg-sandy rounded-full p-0.5"
+          />
           <CustomIcon iconn={home} to={"/home"} text="Home" />
           <CustomIcon
             iconn={musicLibrary}
@@ -66,7 +67,7 @@ const MobileNav = () => {
           <CustomIcon
             iconn={logout}
             text="Log out"
-            to='k'
+            to="k"
             onClick={() => setUserLoggedIn(false)}
           />
         </div>

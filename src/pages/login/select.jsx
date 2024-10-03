@@ -8,11 +8,11 @@ const Select = () => {
     option === "login" ? setOption("signup") : setOption("login");
   };
   return (
-    <div className="select mt-8 md:mt-4 h-[130vh] md:h-[110vh]">
+    <div className="select mt-8 md:mt-4 flex h-[75vh] items-center justify-center flex-col">
       {option === "signup" && (
         <>
           <SignUp />
-          <p className="mx-4 mt-12 text-sandy text-xl">
+          <p className="mx-4 mt-12 text-sandy text-base md:text-xl mb-6 lg:mb-0">
             Do you have an account already? Login{" "}
             <button
               onClick={handleButton}
@@ -26,7 +26,7 @@ const Select = () => {
       {option === "login" && (
         <>
           <SignIn />
-          <p className="mx-4 mt-12 text-sandy text-xl">
+          <p className="mx-4 mt-12 text-sandy text-base md:text-xl">
             Don't have an account yet? Signup{" "}
             <button
               onClick={handleButton}

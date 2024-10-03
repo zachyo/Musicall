@@ -3,10 +3,11 @@ import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import FormInput from "../../components/form-input/form-input.component";
-import Spinner from "../../components/spinner/spinner.component";
 // import google from "../assets/icons/Google.png";
 // import facebook from "../assets/icons/Facebook.png";
 import "./signin.styles.scss";
+import { LoaderCircle } from "lucide-react";
+import { BASE_URL } from "../../utilities/useFetch";
 // import "./signup.styles.scss";
 
 const SignUp = () => {
@@ -19,9 +20,10 @@ const SignUp = () => {
     password: "",
   });
   const [isSending, setIsSending] = useState(false);
+  const [check, setCheck] = useState(false);
   const { first_name, last_name, email, password, gender, username } = user;
   const notifySuccess = () =>
-    toast.info("Account Created", {
+    toast.info("Account created. Kindly verify in mail", {
       position: "top-right",
       autoClose: 2000,
       hideProgressBar: false,
@@ -51,6 +53,17 @@ const SignUp = () => {
   };
 
   const handleSubmit = async (event) => {
+    if (
+      email.length === 0 ||
+      password.length < 8 ||
+      last_name.length === 0 ||
+      first_name.length === 0 ||
+      gender.length === 0 ||
+      username.length === 0 ||
+      !check
+    )
+      return;
+
     event.preventDefault();
     setIsSending(true);
 
@@ -61,12 +74,17 @@ const SignUp = () => {
         "Access-Control-Allow-Origin": "*",
         Accept: "application/json",
       },
-      body: JSON.stringify(user),
+      body: JSON.stringify({
+        first_name: first_name,
+        last_name: last_name,
+        username: username,
+        email: email,
+        password: password,
+      }),
     };
 
-    fetch("https://music-api-7oyo.onrender.com/api/register", sendOptions)
+    fetch(`${BASE_URL}/auth/register`, sendOptions)
       .then((res) => {
-        console.log("here");
         console.log(res);
         if (!res.ok) {
           notifyError();
@@ -74,17 +92,18 @@ const SignUp = () => {
         return res.json();
       })
       .then((data) => {
-        if (data.msg === "User Created") {
+        if (data?.message === "User created successfully") {
           notifySuccess();
+          setIsSending(false);
         }
         console.log(data);
-        localStorage.setItem("user", data.user);
-        setTimeout(function () {
-          setIsSending(false);
-          data.msg === "User Created"
-            ? window.location.reload()
-            : console.log(data.msg);
-        }, 2000);
+        // localStorage.setItem("user", data?.data);
+        // setTimeout(function () {
+        //   setIsSending(false);
+        //   data?.message === "User Created"
+        //     ? window.location.reload()
+        //     : console.log(data.msg);
+        // }, 2000);
         clearUser();
       });
   };
@@ -130,7 +149,7 @@ const SignUp = () => {
               required
             />
             <FormInput
-              type="email"
+              type="text"
               name="username"
               label="Username"
               placeholder="Username"
@@ -145,15 +164,16 @@ const SignUp = () => {
                 className="form-input dropdown w-full my-3 p-3 md:p-[1rem] md:my-[1.2rem]"
                 onChange={handleChange}
                 value={gender}
+                required
               >
-                <option>Gender</option>
+                <option value="">Select Gender</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
                 <option value="noAns">Prefer not to say</option>
               </select>
             </div>
             <FormInput
-              type="password"
+              type="text"
               name="password"
               label="Password"
               placeholder="Password"
@@ -166,7 +186,13 @@ const SignUp = () => {
           </div>
           {/* <p className="valid">Password must be 8 characters long</p> */}
           <div className="TandT flex items-center mb-1">
-            <input type="checkbox" name="acceptance" required />
+            <input
+              type="checkbox"
+              name="acceptance"
+              required
+              value={check}
+              onChange={(e) => setCheck(e.target.checked)}
+            />
             <p className="text-lightSteel text-[14px] md:text-[16px]">
               {" "}
               I Accept The{" "}
@@ -180,9 +206,13 @@ const SignUp = () => {
             type="submit"
             disabled={isSending}
             onClick={handleSubmit}
-            className="md:text-2xl"
+            className="md:text-2xl flex items-center justify-center"
           >
-            {isSending === true ? <Spinner /> : "Create Account"}
+            {isSending === true ? (
+              <LoaderCircle className="animate-spin" />
+            ) : (
+              "Submit"
+            )}
           </button>
         </form>
         {/* <p>

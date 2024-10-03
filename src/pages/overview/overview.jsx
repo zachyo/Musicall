@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import MobileNav from "../../components/mobile-nav/mobile-nav";
 // import { useState } from "react";
 import PlayerControl from "../../components/player-control/player-control";
@@ -13,6 +13,7 @@ import useMusicallStore from "../../store/musicallStore";
 import logo from "../../assets/icons/logo (1).svg";
 
 import "./overview.scss";
+import { useEffect } from "react";
 const Overview = ({ chartB }) => {
   // const [searchKey, setSearchKey] = useState(undefined);
   // const setSearch = () => setSearchKey(searchKey);
@@ -20,32 +21,45 @@ const Overview = ({ chartB }) => {
   // const {val} = useLocation()
   // console.log(val)
   const currentTracklist = useMusicallStore((state) => state.currentTracklist);
-  const setShowNav = useMusicallStore((state) => state.setShowNav )
+  const setShowNav = useMusicallStore((state) => state.setShowNav);
+  const userLoggedIn = useMusicallStore((state) => state.userLoggedIn);
+
+  const location = useLocation();
+  const navigate = useNavigate();
+  const currentPath = location.pathname.split("/")?.[1];
+
+  useEffect(() => {
+    if (!userLoggedIn) {
+      navigate("/signin");
+    }
+  }, [userLoggedIn, navigate]);
 
   return (
     <UserProvider>
       <ControlsContextProvider>
-        <NowPlayingContextProvider> 
+        <NowPlayingContextProvider>
           <TimeVolumeProvider>
             <SearchProvider>
               <div
                 className="overview"
                 // style={{ backgroundImage: `url(${chartB})` }}
               >
-                <div className="flex justify-around md:justify-center">
+                <div className="flex">
                   <SideNav />
                   <MobileNav />
 
-                  <div className="overview-container">
+                  <div className="overview-container w-full lg:w-[calc(100vw-120px)] h-[100vh]">
                     <div className="flex p-3">
-                      <img src={logo} alt="" className="block md:hidden" onClick={()=>setShowNav('')}/>
-                      <SearchBar/>
+                      <img
+                        src={logo}
+                        alt=""
+                        className="block md:hidden"
+                        onClick={() => setShowNav("")}
+                      />
+                      {!["signin"].includes(currentPath) && <SearchBar />}
                     </div>
 
-                    <div
-                      className="overview-replaceable mt-0
-                     md:mt-[40px]"
-                    >
+                    <div className="overview-replaceable mt-0 max-h-[calc(91vh-100px)] overflow-y-scroll">
                       <Outlet />
                     </div>
                   </div>

@@ -21,14 +21,14 @@ const ArtistsAndAlbums = () => {
   const artists = tracksData.artists.data.map((artist, i) => {
     return (
       <div
-        className="badge flex flex-col justify-end rounded-[20px] h-[137px] md:h-[214px] bg-cover pl-3 pb-4 md:pl-5 md:pb-5 text-sm text-left mr-5"
+        className="badge cursor-pointer flex flex-col justify-end rounded-[20px] h-[137px] md:h-[214px] bg-cover pl-3 pb-4 md:pl-5 md:pb-5 text-sm text-left"
         style={{ backgroundImage: `url(${artist.picture_medium})` }}
         onClick={() => {
           handleClick(i, "artist");
         }}
         key={i}
       >
-        <h1 className="text-xl w-32 md:w-48 truncate">{artist.name}</h1>
+        <h1 className="text-base lg:text-xl w-32 md:w-48 truncate font-medium">{artist.name}</h1>
       </div>
     );
   });
@@ -36,24 +36,24 @@ const ArtistsAndAlbums = () => {
   const albums = tracksData.albums.data.map((album, i) => {
     return (
       <div
-        className="badge flex flex-col justify-end rounded-[20px] h-[137px] md:h-[214px] bg-cover pl-3 pb-4 md:pl-5 md:pb-5 text-sm text-left mr-5"
+        className="badge cursor-pointer flex flex-col justify-end rounded-[20px] h-[137px] md:h-[214px] bg-cover pl-3 pb-4 md:pl-5 md:pb-5 text-sm text-left mr-5"
         style={{ backgroundImage: `url(${album.cover_medium})` }}
         onClick={() => {
           handleClick(i, "album");
         }}
         key={i}
       >
-        <h1 className="text-xl w-32 md:w-48 truncate">{album.title}</h1>
+        <h1 className="text-xl w-32 md:w-48 truncate font-medium">{album.title}</h1>
         <p className="text-[10px] opacity-80">{album.artist.name}</p>
       </div>
     );
   });
 
   return (
-    <div className="collections-page text-light mt-8 h-[110vh] w-[99vw] px-4 md:p-0 md:w-[88vw]">
+    <div className="collections-page text-light mt-8 mb-10 w-[99vw] px-4 md:p-0 md:w-[88vw]">
       <div className="artists mb-16">
         <h1 className="text-left text-xl md:text-3xl font-bold">Top Artists</h1>
-        <div className="coll flex mt-7">{artists}</div>
+        <div className="coll flex mt-7 gap-5">{artists}</div>
       </div>
       <div className="albums">
         <h1 className="text-left text-xl md:text-3xl font-bold">

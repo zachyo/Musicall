@@ -3,6 +3,7 @@ import heart from '../../assets/icons/Heart.svg'
 
 import useMusicallStore from '../../store/musicallStore';
 import './chart-card.scss';
+import { capitalizeText } from '../../utilities/utils';
 
 const ChartCard = ({card, num}) => {
   const setOption = useMusicallStore((state) => state.setAlbumOption);
@@ -12,6 +13,7 @@ const ChartCard = ({card, num}) => {
     setOption('album')
     navigate(`/album/${num}`)
   }
+
   return (
     <div className="chart-card animate-slideright p-4 md:items-center md:p-4 md:w-[32.6vw]">
       <div
@@ -24,7 +26,7 @@ const ChartCard = ({card, num}) => {
         <div className="info w-[190px] md:w-auto">
           <h2 className="text-lg">{title}</h2>
           <p className="opacity-50 mt-1 mb-6 md:mb-2">{artist.name}</p>
-          <p className="text-[14px]">5mins</p>
+          <p className="text-[14px]">{capitalizeText(card.record_type)}</p>
         </div>
       </div>
 

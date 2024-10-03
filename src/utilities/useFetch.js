@@ -2,6 +2,14 @@ import { useEffect, useReducer, useRef } from "react";
 // //**
 // @param {string} url - fetch link
 
+export const BASE_URL = "https://marco-pzbx.onrender.com/api/v1";
+
+export function handleClearLocalStorage() {
+  return ["user", "access_token"].forEach((key) => {
+    window.localStorage.removeItem(key);
+  });
+}
+
 // */
 function useFetch(url) {
   const cache = useRef({});
@@ -51,11 +59,13 @@ function useFetch(url) {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "ORIGIN",
           "Access-Control-Allow-Headers": "*",
+          "Access-Control-Allow-Credentials": 'true',
           mode: "cors",
         },
       };
-// `https://cors-anywhere.herokuapp.com/${url}`
-//https://cors-proxy.fringe.zone/
+      // `https://cors-anywhere.herokuapp.com/${url}`
+      // https://cors-newmusicall.onrender.com/${url}
+      //https://cors-proxy.fringe.zone/u
       await fetch(`https://cors-newmusicall.onrender.com/${url}`, options)
         .then((res) => {
           if (!res.ok) {

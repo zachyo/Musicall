@@ -1,0 +1,49 @@
+//MEDIA QUERY MANAGER
+/*
+0-600px     = Phone
+601-900px   = Tablet potrait
+901-1200px  = Tablet Landscape
+Current Laptop styles
+1800px+     = Big Desktop
+
+1em=16px
+1rem=10px
+*/
+@mixin respond($option) {
+  @if $option == phone {
+    @media (max-width:37.5em) { @content }; //600px
+  }
+  @if $option == tab-port {
+    @media (max-width:56.25em) { @content }; //900px
+  }
+  @if $option == tab-land {
+    @media (max-width:75em) { @content };  //1200px
+  }
+  @if $option == big-desktop {
+    @media (min-width:112.5em) { @content };  //1800px
+  }
+}
+
+
+html {
+  // This defines what 1rem is, 1rem=10px
+  font-size: 62.5%; // 10/16
+
+  @include respond(tab-land) {  //width < 1200px
+    font-size: 56.25%;   //9px
+  }
+  @include respond(tab-port) { //width < 900px
+    font-size: 50%;   //8px
+  }
+  @include respond(big-desktop) {
+    font-size: 75%;   //12px
+  }
+}
+body {
+  // box-sizing: border-box;
+  // padding: 3rem;
+
+  @include respond(tab-port) {
+      padding: 0;
+    }
+}

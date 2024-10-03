@@ -1,14 +1,15 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import FormInput from "../../components/form-input/form-input.component";
-import Spinner from "../../components/spinner/spinner.component";
 
 import useMusicallStore from "../../store/musicallStore";
 // import google from "../assets/icons/Google.png";
 // import facebook from "../assets/icons/Facebook.png";
 import "./signin.styles.scss";
+import { LoaderCircle } from "lucide-react";
+import { BASE_URL } from "../../utilities/useFetch";
 // import "./signup.styles.scss";
 
 const SignIn = () => {
@@ -31,8 +32,8 @@ const SignIn = () => {
       progress: undefined,
       theme: "dark",
     });
-  const notifyError = () =>
-    toast.error("Error Loggin In", {
+  const notifyError = (msg) =>
+    toast.error(msg ?? "Error Loggin In", {
       position: "top-right",
       autoClose: 2000,
       hideProgressBar: false,
@@ -51,6 +52,7 @@ const SignIn = () => {
   };
 
   const handleSubmit = async (event) => {
+    if (user.email.length === 0 || user.password.length === 0) return
     event.preventDefault();
     setIsSending(true);
 
@@ -64,28 +66,31 @@ const SignIn = () => {
       body: JSON.stringify(user),
     };
 
-    fetch("https://music-api-7oyo.onrender.com/api/login", sendOptions)
-      .then((res) => {
-        console.log("here");
-        console.log(res);
-        if (!res.ok) {
-          notifyError();
-        }
+    fetch(`${BASE_URL}/auth/login`, sendOptions)
+      .then((res) => {       
         return res.json();
       })
       .then((data) => {
-        if (data.msg === "login Successful") {
-          notifySuccess();
-          setUserLoggedIn(true);
-        }
         console.log(data);
-        setTimeout(function () {
+        if (data.status_code === 401 || data.status_code === 404) {
+          notifyError(data.message);
+          setIsSending(false);
+        }      
+
+        if (data.status_code === 200) {
+          notifySuccess();
+          localStorage.setItem("user", data?.data?.user);
+          localStorage.setItem("access_token", data?.access_token);
+          setUserLoggedIn(true);
           setIsSending(false);
           clearUser();
-          data.msg === "login Successful"
-            ? navigate("/loggedin")
-            : console.log(data.msg);
-        }, 2000);
+          navigate("/loggedin");
+        }
+        // setTimeout(function () {
+        //   data.msg === "login Successful"
+        //     ? navigate("/loggedin")
+        //     : console.log(data.msg);
+        // }, 2000);
       });
   };
 
@@ -122,7 +127,7 @@ const SignIn = () => {
             />
           </div>
           {/* <p className="valid">Password must be 8 characters long</p> */}
-          <div className="TandT flex items-center mb-1">
+          {/* <div className="TandT flex items-center mb-1">
             <input type="checkbox" name="acceptance" required />
             <p className="text-lightSteel text-[14px] md:text-[16px]">
               {" "}
@@ -131,15 +136,15 @@ const SignIn = () => {
                 Terms and Conditions
               </Link>
             </p>
-          </div>
+          </div> */}
 
           <button
             type="submit"
             disabled={isSending}
             onClick={handleSubmit}
-            className="md:text-2xl"
+            className="md:text-2xl flex items-center justify-center mt-5"
           >
-            {isSending === true ? <Spinner /> : "Login"}
+            {isSending === true ? <LoaderCircle className="animate-spin my-1"/> : "Submit"}
           </button>
         </form>
         {/* <p>

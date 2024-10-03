@@ -21,7 +21,7 @@ const ChartAlbum = () => {
   const setCurrentTracklist = useMusicallStore(
     (state) => state.setCurrentTracklist
   );
-  const option = useMusicallStore((state)=>state.albumOption)
+  const option = useMusicallStore((state) => state.albumOption);
 
   const { id } = useParams();
   /*
@@ -46,8 +46,9 @@ const ChartAlbum = () => {
     fetchLink = `https://api.deezer.com/${option}/${newData.id}/tracks/?limit=20`;
 
   //fetching album data
-  const { loading, error, data } = useFetch(fetchLink);
+  const { loading, data } = useFetch(fetchLink);
   const albumListData = data?.data;
+  // console.log(newData);
 
   //duration of album
   if (albumListData) {
@@ -109,9 +110,14 @@ const ChartAlbum = () => {
             {option === "album" ? newData.artist.name : ""}
           </p>
           <p>
-            {/* {option === "artist" ? 20 : data?.total} */}
-            {albumList?.length}
-            {option !== "podcast" && <> songs ~</>} {fullDuration}
+            {loading ? (
+              <>&nbsp;</>
+            ) : (
+              <>
+                {albumList?.length}
+                {option !== "podcast" && <> songs ~</>} {fullDuration}
+              </>
+            )}
           </p>
 
           <div className="action-buttons flex space-x-3 mt-10">

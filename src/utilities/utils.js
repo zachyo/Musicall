@@ -24,3 +24,23 @@ export const getTime = (time) => {
     )}secs`;
   } else return `${mins}mins : ${`0${Math.floor(time % 60)}`.slice(-2)}secs`;
 };
+
+export const getRandNum = () => {
+  const randomNumbers = [];
+  while (randomNumbers.length < 3) {
+    const randomNumber = Math.floor(Math.random() * 10);
+    if (!randomNumbers.includes(randomNumber)) {
+      randomNumbers.push(randomNumber);
+    }
+  }
+  return randomNumbers;
+};
+
+export const capitalizeText = (text) => {
+  if (!text) return;
+  const textToBeTransformed = text.toLowerCase();
+  return (
+    textToBeTransformed[0].toUpperCase() +
+    textToBeTransformed.slice(1, textToBeTransformed.length)
+  );
+};

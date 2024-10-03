@@ -15,7 +15,7 @@ const PlaylistsAndPods = () => {
   const playlists = tracksData.playlists.data.map((playlist, i) => {
     return (
       <div
-        className="badge flex flex-col justify-end rounded-[20px] h-[137px] md:h-[214px] bg-cover pl-3 pb-4 md:pl-5 md:pb-5 text-sm text-left mr-5"
+        className="badge cursor-pointer flex flex-col justify-end rounded-[20px] h-[137px] md:h-[214px] bg-cover pl-3 pb-4 md:pl-5 md:pb-5 text-sm text-left mr-5"
         style={{ backgroundImage: `url(${playlist.picture_medium})` }}
         onClick={() => {
           handleClick(i, "playlist");
@@ -31,7 +31,7 @@ const PlaylistsAndPods = () => {
   const podcasts = tracksData.podcasts.data.map((podcast, i) => {
     return (
       <div
-        className="badge flex flex-col justify-end rounded-[20px] h-[137px] md:h-[214px] bg-cover pl-3 pb-4 md:pl-5 md:pb-5 text-sm text-left mr-5"
+        className="badge cursor-pointer flex flex-col justify-end rounded-[20px] h-[137px] md:h-[214px] bg-cover pl-3 pb-4 md:pl-5 md:pb-5 text-sm text-left mr-5"
         style={{ backgroundImage: `url(${podcast.picture})` }}
         onClick={() => {
           handleClick(i, "podcast");
@@ -45,7 +45,7 @@ const PlaylistsAndPods = () => {
   });
 
   return (
-    <div className="collections-page text-light mt-8 h-[110vh] w-[99vw] px-4 md:p-0 md:w-[88vw]">
+    <div className="collections-page text-light mt-8 mb-10 w-[99vw] px-4 md:p-0 md:w-[88vw]">
       <div className="artists mb-16">
         <h1 className="text-left text-xl md:text-3xl font-bold">
           Popular Playlists

@@ -13,7 +13,7 @@ const Carousel = ({ songData }) => {
   let newData = songData;
   if (searchKey) {
     newData = searchFilter(searchKey, CARDS_DATA);
-    console.log(searchKey, newData);
+    // console.log(searchKey, newData);
   }
   const setCurrentTracklist = useMusicallStore(
     (state) => state.setCurrentTracklist
@@ -21,7 +21,7 @@ const Carousel = ({ songData }) => {
   const songs = newData?.map((each, i) => {
     return (
       <div
-        className="releaseCard"
+        className="releaseCard animate-slideup"
         key={each.id}
         onClick={() => {
           setCurrentTracklist(songData)
@@ -30,7 +30,7 @@ const Carousel = ({ songData }) => {
       >
         <img src={each.album.cover} alt='' />
         <h2 className="truncate">{each.title}</h2>
-        <p className="">{each?.artist?.name}</p>
+        <p className="max-w-[140px] whitespace-normal">{each?.artist?.name}</p>
       </div>
     );
   });

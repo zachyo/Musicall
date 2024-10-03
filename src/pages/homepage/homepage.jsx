@@ -6,48 +6,28 @@ import heroImg from "../../assets/images/heroImg.png";
 import Carousel from "../../components/carousel/carousel";
 import useFetch from "../../utilities/useFetch";
 import { tracksData } from "../../utilities/tracksData";
-import { useContext } from "react";
-import SearchContext from "../../contexts/searchContext";
+// import { useContext } from "react";
+// import SearchContext from "../../contexts/searchContext";
+// import { getRandNum } from "../../utilities/utils";
+import Spinner from "../../components/spinner/spinner.component";
 
 const Homepage = () => {
-  const { setCardList } = useContext(SearchContext);
+  // const { setCardList } = useContext(SearchContext);
 
-  const CardList = () => {
-    let randArr = [];
-    let list = tracksData.albums.data;
-    let newList = [];
-    while (randArr.length < 3) {
-      let randNum = Math.floor(Math.random() * list.length);
-      if (!randArr.includes(randNum)) {
-        randArr.push(randNum);
-        newList.push(list[randNum]);
-      }
-    }
-    // setCardList(randArr)
-    console.log(newList);
-    return newList.map((card, i) => {
-      return (
-        <ChartCard key={card.id} card={card} num={randArr[i]} id={card.id} />
-      );
-    });
-  };
   // www.totaltypescript.com
   // www.typescriptlang.org
   // checkout js docs
-  const { loading, error, data } = useFetch(
-    // "https://musica-api.up.railway.app/new"
-    // 'https://shazam.p.rapidapi.com/charts/track'
-    "https://cors-anywhere.herokuapp.com/https://api.deezer.com/chart/tracks"
-    // "https://shazam-core.p.rapidapi.com/v1/search/multi?query=metallica&search_type=SONGS"
+  const { loading, data } = useFetch(
+    "https://api.deezer.com/chart/tracks"
   );
-  console.log(data, error);
+  // console.log(data, error);
 
   return (
     <div className="outlet flex flex-col justify-center">
-      <div className="text-left flex flex-col justify-center m-4 md:m-0 gap-8 md:flex-row ">
+      <div className="text-left flex flex-col m-4 md:m-0 gap-8 md:flex-row ">
         <div className="container md:w-[54vw] hero bg-home">
           <div className="hero-left my-10 mx-5 text-white font-normal text-sm flex flex-col justify-between md:my-10 md:mx-11 md:gap-[75px]">
-            <p className="text-xs">Currated playlist</p>
+            <p className="text-xs">Curated playlist</p>
             <div className="mt-32 md:m-0">
               <h1 className="font-bold text text-4xl mb-2">R & B Hits</h1>
               <p>
@@ -92,11 +72,33 @@ const Homepage = () => {
           New Releases.
         </h1>
         <>
-          <Carousel songData={tracksData.tracks.data} />
-          <Carousel />
+          {loading ? (
+            <div className="h-[200px] w-full flex items-center justify-center">
+              <Spinner />
+            </div>
+          ) : (
+            <Carousel songData={data?.tracks.data} />
+          )}
+          {/* <Carousel /> */}
         </>
       </div>
     </div>
+  );
+};
+
+const CardList = () => {
+  let list = tracksData.albums.data;
+
+  // const randArr = getRandNum(); 
+
+  return (
+    <>
+      {list
+        .filter((_, i) => i < 3)
+        .map((card, i) => (
+          <ChartCard key={card.id} card={card} num={i} id={card.id} />
+        ))}
+    </>
   );
 };
 

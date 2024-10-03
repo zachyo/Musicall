@@ -22,7 +22,7 @@ const SongCard = ({ song, img, title, handleSong }) => {
       <div className="flex">
         <div className="flex items-center justify-center space-x-5 mr-3 md:mr-20">
           <img src={img} alt="" className="h-10 w-10 rounded-xl" />
-          <img src={heart} alt="" className="hidden md:block" />
+          <img src={heart} alt="" className="hidden md:block hover:scale-[1.2]" />
         </div>
         <div className="md:hidden">
           <div className="title text-left mb-2">
