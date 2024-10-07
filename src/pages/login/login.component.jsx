@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import FormInput from "../../components/form-input/form-input.component";
 
@@ -10,6 +10,7 @@ import useMusicallStore from "../../store/musicallStore";
 import "./signin.styles.scss";
 import { LoaderCircle } from "lucide-react";
 import { BASE_URL } from "../../utilities/useFetch";
+import { notifyError, notifySuccess } from "../../utilities/utils";
 // import "./signup.styles.scss";
 
 const SignIn = () => {
@@ -20,29 +21,7 @@ const SignIn = () => {
   const [isSending, setIsSending] = useState(false);
   const { email, password } = user;
   const navigate = useNavigate();
-  const setUserLoggedIn = useMusicallStore((state) => state.setUserLoggedIn);
-  const notifySuccess = () =>
-    toast.info("LogIn Successfull", {
-      position: "top-right",
-      autoClose: 1500,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-    });
-  const notifyError = (msg) =>
-    toast.error(msg ?? "Error Loggin In", {
-      position: "top-right",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-    });
+  const setUserLoggedIn = useMusicallStore((state) => state.setUserLoggedIn);  
 
   const clearUser = () => {
     Array.from(document.querySelectorAll("input")).forEach((input) => {
@@ -105,26 +84,30 @@ const SignIn = () => {
         <h1 className="mb-12 text-4xl font-bold text-lightSteel">Login</h1>
         <form className="form" onSubmit={handleSubmit}>
           <div className="inputs flex flex-col justify-center flex-wrap md:gap-8 md:flex-row">
-            <FormInput
-              type="email"
-              name="email"
-              label="Email Address"
-              placeholder="Email Address"
-              value={email}
-              onChange={handleChange}
-              required
-            />
-            <FormInput
-              type="password"
-              name="password"
-              label="Password"
-              placeholder="Password"
-              value={password}
-              onChange={handleChange}
-              required
-              pattern="[A-Za-z0-7]{8,}"
-              title="Password must include number and alphabet, no symbols"
-            />
+            <div>
+              <FormInput
+                type="email"
+                name="email"
+                label="Email Address"
+                placeholder="Email Address"
+                value={email}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div>
+              <FormInput
+                type="password"
+                name="password"
+                label="Password"
+                placeholder="Password"
+                value={password}
+                onChange={handleChange}
+                required
+                pattern="[A-Za-z0-7]{8,}"
+                title="Password must include number and alphabet, no symbols"
+              />
+            </div>
           </div>
           {/* <p className="valid">Password must be 8 characters long</p> */}
           {/* <div className="TandT flex items-center mb-1">
@@ -144,7 +127,11 @@ const SignIn = () => {
             onClick={handleSubmit}
             className="md:text-2xl flex items-center justify-center mt-5"
           >
-            {isSending === true ? <LoaderCircle className="animate-spin my-1"/> : "Submit"}
+            {isSending === true ? (
+              <LoaderCircle className="animate-spin my-1" />
+            ) : (
+              "Submit"
+            )}
           </button>
         </form>
         {/* <p>

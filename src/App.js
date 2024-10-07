@@ -11,6 +11,7 @@ import LoggedIn from './pages/login/loggedIn';
 import Select from './pages/login/select';
 import ArtistsAndAlbums from './pages/arstist-albums/artists-albums';
 import PlaylistsAndPods from './pages/playlists-pods/playlists-pods';
+import { VerifyMail } from './pages/verify-mail/verify-mail';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="signin" element={<Select />} />
           <Route path="loggedin" element={<LoggedIn />} />
         </Route>
+        <Route path="/verify_email" element={<VerifyMail/>} />
       </Routes>
     </div>
   );

@@ -1,3 +1,5 @@
+import { toast } from "react-toastify";
+
 export const totalTime = (arr) => {
   let val = 0;
   arr.forEach((element) => {
@@ -44,3 +46,27 @@ export const capitalizeText = (text) => {
     textToBeTransformed.slice(1, textToBeTransformed.length)
   );
 };
+
+export const notifyError = (msg) =>
+  toast.error(msg ?? "Error Loggin In", {
+    position: "top-right",
+    autoClose: 2000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "dark",
+  });
+
+export const notifySuccess = (msg) =>
+  toast.info(msg ?? "LogIn Successfull", {
+    position: "top-right",
+    autoClose: 1500,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "dark",
+  });
