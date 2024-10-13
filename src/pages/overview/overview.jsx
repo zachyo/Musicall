@@ -1,4 +1,4 @@
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import MobileNav from "../../components/mobile-nav/mobile-nav";
 // import { useState } from "react";
 import PlayerControl from "../../components/player-control/player-control";
@@ -13,7 +13,6 @@ import useMusicallStore from "../../store/musicallStore";
 import logo from "../../assets/icons/logo (1).svg";
 
 import "./overview.scss";
-import { useEffect } from "react";
 const Overview = ({ chartB }) => {
   // const [searchKey, setSearchKey] = useState(undefined);
   // const setSearch = () => setSearchKey(searchKey);
@@ -22,17 +21,9 @@ const Overview = ({ chartB }) => {
   // console.log(val)
   const currentTracklist = useMusicallStore((state) => state.currentTracklist);
   const setShowNav = useMusicallStore((state) => state.setShowNav);
-  const userLoggedIn = useMusicallStore((state) => state.userLoggedIn);
 
   const location = useLocation();
-  const navigate = useNavigate();
   const currentPath = location.pathname.split("/")?.[1];
-
-  useEffect(() => {
-    if (!userLoggedIn) {
-      navigate("/signin");
-    }
-  }, [userLoggedIn, navigate]);
 
   return (
     <UserProvider>

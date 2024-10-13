@@ -1,4 +1,4 @@
-import create from "zustand";
+import {create} from "zustand";
 
 import { devtools, persist } from "zustand/middleware";
 
@@ -7,6 +7,7 @@ const musicallStore = (set) => ({
   albumId: 0,
   albumOption: "album",
   userLoggedIn: false,
+  isVerified : false,
   userPath: "signin",
   showNav : 'hidden',
   setCurrentTracklist: (tracklist) => {
@@ -34,7 +35,12 @@ const musicallStore = (set) => ({
     set((state)=> ({
       showNav : val
     }))
-  }
+  },
+  setIsVerified: (bool) => {
+    set((state) => ({
+      isVerified: bool,
+    }));
+  },
 });
 
 const useMusicallStore = create(

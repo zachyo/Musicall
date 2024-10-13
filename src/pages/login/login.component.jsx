@@ -84,7 +84,6 @@ const SignIn = () => {
         <h1 className="mb-12 text-4xl font-bold text-lightSteel">Login</h1>
         <form className="form" onSubmit={handleSubmit}>
           <div className="inputs flex flex-col justify-center flex-wrap md:gap-8 md:flex-row">
-            <div>
               <FormInput
                 type="email"
                 name="email"
@@ -94,8 +93,6 @@ const SignIn = () => {
                 onChange={handleChange}
                 required
               />
-            </div>
-            <div>
               <FormInput
                 type="password"
                 name="password"
@@ -107,7 +104,6 @@ const SignIn = () => {
                 pattern="[A-Za-z0-7]{8,}"
                 title="Password must include number and alphabet, no symbols"
               />
-            </div>
           </div>
           {/* <p className="valid">Password must be 8 characters long</p> */}
           {/* <div className="TandT flex items-center mb-1">

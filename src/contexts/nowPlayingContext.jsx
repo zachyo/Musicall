@@ -10,17 +10,20 @@ export const NowPlayingContextProvider = ({ children }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [songIndex, setSongIndex] = useState(0);
   const userLoggedIn = useMusicallStore((state) => state.userLoggedIn);
+  const isVerified = useMusicallStore((state) => state.isVerified);
   const navigate = useNavigate();
 
   const handleNowPlaying = (song, i) => {
     /*
     check zustand if user is logged in
-    if yes, continue
-    if no, break and navigate to login page
+    if no, navigate to login page
+    if yes, check if verified. if no, navigate to confirm-mail page else continue 
     */
     if (!userLoggedIn) {
       setIsPlaying(false);
       navigate("/signin");
+    } else if (!isVerified) {
+      navigate("/confirm-email");
     } else {
       if (song.title === nowPlaying.title) {
         setIsPlaying((prev) => !prev);
